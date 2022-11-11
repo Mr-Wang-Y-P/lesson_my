@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>代码设计模式——代理模式</h1>
+    <script>
+        let wyp={
+            name:"汪迎平",
+            age:20,
+            hometown:"景德镇",
+            school:"东华理工大学",
+            //o 形参
+            sendFlower(o){
+                o.receiveFlower(this)
+            }
+        }
+        let girl={
+            xq:50,
+            name:"girl",
+            age:20,
+            room:'101',
+            receiveFlower(s){
+                console.log(`${this.name}收到了${s.name}送的花`)
+                if(this.xq>=90){
+                    console.log('发展下一步，一起看电影!')
+                }
+                else{
+                    console.log('继续加油...')
+                }
+              
+            }
+           // `${}` 字符串模板
+        }
+        //代理模式
+        let girl1={
+            name:"girl1",
+            age:20,
+            room:'101',
+            //接口 当不同对象，有相同方法时，可以互换使用
+           receiveFlower(s){
+                // girl.receiveFlower(s)
+                setTimeout(function(){
+                    girl.xq=95;
+                    girl.receiveFlower(s)
+                },10000)
+           }
+        }
+        wyp.sendFlower(girl1)
+    </script>
+</body>
+</html>
