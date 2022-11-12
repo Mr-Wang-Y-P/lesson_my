@@ -1,0 +1,16 @@
+typeof a
+'undefined'
+typeof 1
+'number'
+typeof ""
+'string'
+typeof {}
+'object'
+typeof true
+'boolean'
+typeof []
+'object'
+typeof function
+    fun()
+    {}
+'function'

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+        *@func 计算工资
+        *@author 汪迎平
+        *@date 2022-11-12
+        *@params {salary number,level string}
+        *level string['A','B','C','D','S','a','b','c','d','s']
+        *@return total number
+        */
+    //    带参
+        function calculateSalary1(salary,level){
+            // 严格性校验
+            if(typeof salary!='number' || salary<=0 || ['A','B','C','D','S','a','b','c','d','s'].indexOf(level)==-1){
+    
+                // console.warn('参数错误')
+                throw new Error("参数错误")
+                return;
+            }
+
+            switch(level){
+                case 'A':
+                    return salary*14;
+                case 'B':
+                    return salary*15;
+                case 'C':
+                    return salary*16;
+                case 'D':
+                    return salary*18;
+                case 'S':
+                    return salary*22;
+
+            }
+        }
+        // 传值
+        function calculateSalary2(salary,level='C'){
+            // 严格性校验
+            if(typeof salary!='number' || salary<=0 || ['A','B','C','D','S'].indexOf(level)==-1){
+    
+                // console.warn('参数错误')
+                throw new Error("参数错误")
+                return;
+            }
+
+            switch(level){
+                case 'A':
+                    return salary*14;
+                case 'B':
+                    return salary*15;
+                case 'C':
+                    return salary*16;
+                case 'D':
+                    return salary*18;
+                case 'S':
+                    return salary*22;
+
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+calculateSalary1
+ƒ calculateSalary1(salary,level){
+            // 严格性校验
+            if(typeof salary!='number' || salary<=0 || ['A','B','C','D','S'].indexOf(level)==-1){
+    
+                // console.warn('参数错误')
+   …
+calculateSalary1(24000,'C')
+384000
+calculateSalary2(24000)
+384000
