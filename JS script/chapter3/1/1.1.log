@@ -1,0 +1,22 @@
+stooge['first-name']
+'Jerome'
+flight.departure.IATA
+'SYD'
+stooge["middle-name"]
+undefined
+flight.status
+undefined
+stooge["FIRST-NAME"]
+undefined
+var middle=stooge["middle-name"] ||"(none)";
+undefined
+var status=flight.status ||"unknown"
+undefined
+flight.equipment 
+undefined
+flight.equipment.model
+VM435:1 Uncaught TypeError: Cannot read properties of undefined (reading 'model')
+    at <anonymous>:1:18
+（匿名） @ VM435:1
+flight.equipment && flight.equipment
+undefined
