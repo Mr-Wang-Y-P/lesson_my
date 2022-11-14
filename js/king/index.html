@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //const ? js 定义常量 关键字/保留字   常量声明的时候必须赋值
+
+        // const array=[1,2,3]
+        // push 在数组后加值
+        // unshift 在数组前加值
+        // pop 删除末尾值
+        // shift() 方法用于把数组的第一个元素从其中删除，并返回第一个元素的值。 array.shift()
+        //js 有强大的表现力
+        //let 变量  
+        // var let 区别
+        // ES6 新版本
+        // var老版本
+        
+    //    let i=2
+    //     if(true){
+    //          //块级作用域
+    //          console.log(i)
+    //         var sum;
+    //         sum=10;
+    //         sum++;
+    //     }
+    //     console.log(sum);  //全局作用域
+
+
+        const duck={
+            sing(){
+                console.log('嘎嘎嘎');
+            }
+        }
+    // 接口
+    const chick={
+        sing(){
+            console.log('嘎嘎嘎')
+        }
+    }
+   
+    const brand=[]    //合唱团
+    for (let i=0;i<999;i++)
+        brand.push(duck);
+    if(typeof chick.sing =="function")
+        brand.push(chick)
+    if(brand.length>=1000)
+        console.log('合唱团招募成功，去领赏')
+    else
+        console.log('继续招募')
+
+    console.log(brand.length);
+    </script>
+</body>
+
+</html>
