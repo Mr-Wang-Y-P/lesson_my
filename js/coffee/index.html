@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>咖啡OrTea</title>
+</head>
+<body>
+    <script>
+        // 类是一个抽象概念，一类对象的属性和方法的模板。
+        class Coffee{
+            // constructor 返回对对象属性创建的函数
+            constructor(type){
+                this.type=type;   
+                console.log(`开始冲泡一杯${this.type}咖啡`);
+                this.boilWater();
+                this.brewCoffeeGriends();
+                this.pourInCup();
+                this.addSugarAndMilk();
+            }
+            boilWater(){
+                console.log('把水烧到100度')
+            }
+            brewCoffeeGriends(){
+                console.log('用沸水冲泡咖啡')
+            }
+            pourInCup(){
+                console.log('把咖啡倒入杯子')
+            }
+            addSugarAndMilk(){
+                console.log('加糖和奶')
+            }
+
+        }
+        const cof=new Coffee('卡布奇诺');
+        console.log(cof.type)
+        cof.boilWater();
+        cof.brewCoffeeGriends();
+        cof.pourInCup();
+        cof.addSugarAndMilk();
+     
+        const cof2=new Coffee('美式');
+        console.log(cof2.type)
+        cof2.boilWater();
+        cof2.brewCoffeeGriends();
+        cof2.pourInCup();
+        cof2.addSugarAndMilk();
+
+
+        console.log(cof instanceof Coffee)
+        console.log(cof2 instanceof Coffee)
+
+
+
+
+        class Tea{
+            constructor(){
+                console.log('开始泡一杯茶');
+                this.boilWater();
+                this.brewTeaGriends();
+                this.pourInCup();
+                this.addLemon();
+            }
+            boilWater(){
+                console.log('把水烧到100度')
+            }
+            brewTeaGriends(){
+                console.log('用沸水泡茶')
+            }
+            pourInCup(){
+                console.log('把茶倒入杯子')
+            }
+            addLemon(){
+                console.log('加柠檬')
+            }
+
+        }
+
+        const tea=new Tea();
+    </script>
+</body>
+</html>
