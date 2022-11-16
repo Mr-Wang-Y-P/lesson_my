@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <style>
+    div>p {
+      background-color: yellow;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>子选择器</h1>
+  <p>子选择器 (>) 选择属于指定元素子元素的所有元素。</p>
+
+  <div>
+    <p>div 中的段落 1。</p>
+    <p>div 中的段落 2。</p>
+    <section>
+      <p>div 中的段落 3。</p>
+    </section> <!-- 非子但属后代 -->
+    <p>div 中的段落 4。</p>
+  </div>
+
+  <p>段落 5。不在 div 中。</p>
+  <p>段落 6。不在 div 中。</p>
+
+</body>
+
+</html>

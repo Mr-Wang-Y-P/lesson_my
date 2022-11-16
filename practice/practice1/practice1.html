@@ -84,18 +84,22 @@
             var city = '西安';
             console.log(`今天${city}雾霾好严重`);
         }
-    
+        console.log(demo)
         var demo1 = function demo2() {
             var city = '西安';
             console.log(`今天${city}雾霾好严重`);
         }
-        demo();//输出今天西安雾霾好严重
-        demo2();//会报错，因为没有为demo2这个function开辟内存，只有一块内存叫demo
-
+        //demo();//输出今天西安雾霾好严重
+        //demo2();//会报错，因为没有为demo2这个function开辟内存，只有一块内存叫demo
+        console.log(demo1)
         function test(){
             var city = '西安';
             console.log(`今天${city}雾霾好严重`);
         }
+        console.log(test)
+
+
+       test()
     </script>
 
 </body>
