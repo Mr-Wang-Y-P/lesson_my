@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>世界杯-招商银行</title>
+    <script>
+    // js 阻塞性  适配 所有css 前面 
+    function responsive() {
+        const w = window.innerWidth / 10
+        // console.log(w);
+        // DOM 编程
+        // 动态的设置html 字体大小为 1rem , 宽度的1/10 
+        document.documentElement.style.fontSize = w + 'px';
+        
+    }
+    responsive();
+    window.addEventListener('resize', responsive);
+    </script> 
+    <link rel="stylesheet" href="./common.css">
+</head>
+<body>
+    <!-- <div class="box"></div> -->
+    <div class="container">
+        <div class="load">
+            <div class="loadImg">
+                <div class="loadTxt">loading</div>
+                <div class="circle"></div>
+                <div class="circle1"></div>
+            </div>
+        </div>
+    </div>
+    <script>
+    window.onload = function() {
+
+    }
+    </script>
+</body>
+</html>
