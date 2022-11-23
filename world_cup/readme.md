@@ -28,3 +28,29 @@
     否则    ms
     实验中的新属性  可能需要    添加    支持
     -webkit-backface-visibility
+
+
+-   如何隐藏一个元素,区别？
+    display :none; 隐藏 让元素离开文档流
+    visibility:hidden;
+    opacity:0; 透明度
+    文档流 一个html5文件就叫文档
+    盒子，html元素 像水流一样 从上到下（块级block），从左到右（inline inline-block)
+    htm元素就在占有位置=盒子模型决定的=内容+padding+border+margin
+    文档流 + 盒子模型 决定看到的页面
+    脱离正常文档流  ,定位了
+
+
+- 3D 世界杯反转特效
+    1. 正面 立方体的最里面 translateZ(330px)
+    2. 下面 本来 也是layer1 在一起的，
+        transform-style:preserve-3d;
+        rotateX(-90deg)
+    3. screen screen_x90 类 顺时针旋转90
+        正面就看不到了
+        底面变成了正面
+
+- 添加了触碰事件系统
+    PC click dbclick submit keydown keyup...
+    Mobile 手势 tap pinch(down|up) 
+    hammer.js
