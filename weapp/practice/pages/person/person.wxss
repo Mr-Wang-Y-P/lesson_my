@@ -1,0 +1,14 @@
+/* pages/person/person.wxss */
+view{
+  background-color: burlywood;
+}
+page{
+  position: relative;
+  width: 100vw;/*相对单位 viewport width*/
+  height: 100vh;/*相对单位 viewport height*/
+  background-color: aqua;
+}
+image{
+  width: 15vw;
+  height: 10vh;
+}

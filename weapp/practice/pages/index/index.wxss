@@ -1,10 +1,11 @@
-/**index.wxss**/
+/* *index.wxss*
 
 page{
   position: relative;
   width: 100vw;/*相对单位 viewport width*/
-  height: 100vh;/*相对单位 viewport height*/
+  /*height: 100vh;/*相对单位 viewport height*/
 }
+/*
 navigator{
   margin-top: -100px;
 }
@@ -69,4 +70,4 @@ button:hover{
 .container1{
   margin-top: 20px;
   width: 100%;
-}
+} */

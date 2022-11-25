@@ -31,3 +31,12 @@
               url:""
             }
           })
+
+- 内置了很多好用的组件
+  复用
+  swiper> swiper-item 组件
+
+- wxml 里{{}}模板
+    在页面上显示出来
+    页面上如果有多个循环片段需要输出的话
+    wx:for  指令  slides   wx:key  唯一值
