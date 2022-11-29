@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <style>
+        .box {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: green;
+            height: 500px;
+        }
+        .item{
+            flex: 1;
+            justify-content: center;
+            align-items: center;
+            background: yellow;
+        }
+        </style>
+    </head>
+    <body>
+        <!--B Format Content -->
+        <!-- body 最大的BFC元素 -->
+        <!-- 为什么div块级 占一行 把兄弟元素挤下去 -->
+        <div class="box">
+            <!-- 新的BFC 很多种方式 不受外界影响 -->
+            <div class="item">1</div>
+            <div class="item">
+                2
+                <br>
+                2.2
+            </div>
+            <div class="item">3</div>
+        </div>
+    </body>
+    </html>
