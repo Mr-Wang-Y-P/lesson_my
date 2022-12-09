@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    #box {
+        width: 200px;
+        height: 200px;
+        background-color: green;
+        display: flex;
+        /* flex-direction: column; */
+        justify-content: center;
+        align-items: center;
+        overflow-y: scroll;
+        /* overflow: hidden; */
+    }
+    .innerBox {
+        width: 100px;
+        height: 100px;
+        background-color: yellow;
+    }
+    </style>
+</head>
+<body>
+    <!-- <input type="text" id="inp"> -->
+    <div id="box">
+        <div class="innerBox"></div>
+        <!-- <div class="innerBox"></div>
+        <div class="innerBox"></div>
+        <div class="innerBox"></div>
+        <div class="innerBox"></div>
+        <div class="innerBox"></div>
+        <div class="innerBox"></div>
+        <div class="innerBox"></div>
+        <div class="innerBox"></div>
+        <div class="innerBox"></div>
+        <div class="innerBox"></div>
+        <div class="innerBox"></div>
+        <div class="innerBox"></div>
+        <div class="innerBox"></div>
+        <div class="innerBox"></div>
+        <div class="innerBox"></div>
+        <div class="innerBox"></div>
+        <div class="innerBox"></div>
+        <div class="innerBox"></div>
+        <div class="innerBox"></div> -->
+        <!-- <div class="innerBox"></div> -->
+    </div>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script> -->
+    <script>
+    const oBox = document.querySelector('#box');
+    // const app = document.querySelector('#app');
+    // const hammertime = new Hammer(oBox);
+    // hammertime.on('pan', function(ev) {
+    //     console.log(ev, '////');
+    // });
+    const innerBox = document.querySelector('.innerBox');
+    // DOM2级事件
+    // 注册事件 event loop 
+    oBox.addEventListener('click', function() {
+        console.log('biubiubiu');
+    }, true)
+    // oBox.addEventListener('mouseover', function() {
+    //     console.log('mouseover')
+    // })
+    // oBox.addEventListener('mouseout', function() {
+    //     console.log('mouseout')
+    // })
+    // oBox.addEventListener('mousemove', function() {
+    //     // 触发频繁  服务器  减少一些触发？ 节流
+
+    //     console.log('mousemove')
+    // })
+    // oBox.addEventListener('scroll', function() {
+    //     // 触发频繁  服务器  减少一些触发？ 节流
+
+    //     console.log('scroll')
+    // })
+    // oBox.addEventListener('keyup', function() {
+    //     // 触发频繁  服务器  减少一些触发？ 节流
+
+    //     console.log('keyup')
+    // })
+
+    // window.addEventListener('resize', function() {
+    //     console.log('resize');
+    // })
+
+    innerBox.addEventListener('click', function() {
+        console.log('zhizhizhi');
+    }, true)
+    // DOM 0 级事件
+    // oBox.onclick= function() {
+    //     console.log('biu');
+    // }
+    // document.getElementById('inp').addEventListener('keydown', function() {
+    //     console.log('keydown');
+    // })
+    </script>
+</body>
+</html>
