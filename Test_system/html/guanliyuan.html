@@ -9,7 +9,7 @@
     <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdn.staticfile.org/popper.js/1.15.0/umd/popper.min.js"></script>
     <script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> 
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <!-- <script src="../vuejs/vue.js"></script> -->
     <title>管理信息</title>
     <style>
@@ -170,7 +170,7 @@
                 </table>
 
                 <div v-show="showBox" class="w-50 mx-auto">
-                    <div v-on:click="close" class="close">X</div>
+                    <div v-on:click="close1" class="close">X</div>
                     <table class="table table-success">
                         <tr>
                             <td>教师编号：</td>
@@ -207,7 +207,7 @@
                                 <!-- isAdd返回true，显示添加按钮，否则显示修改按钮 -->
                                 <button v-if="isAdd" v-on:click="add1()" class="btn btn-primary">添加</button>
                                 <button v-else v-on:click="update1()" class="btn btn-primary ">修改</button>
-                                <button v-on:click="cancel()" class="btn btn-primary">取消</button>
+                                <button v-on:click="cancel1()" class="btn btn-primary">取消</button>
                             </td>
                         </tr>
 
@@ -239,7 +239,7 @@
                     </tbody>
                 </table>
                 <div v-show="showBox" class="w-50 mx-auto">
-                    <div v-on:click="close" class="close">X</div>
+                    <div v-on:click="close2" class="close">X</div>
                     <table class="table table-success">
                         <tr>
                             <td>评测内容编号</td>
@@ -267,7 +267,7 @@
                             <td>
                                 <!-- isAdd返回true，显示添加按钮，否则显示修改按钮 -->
                                 <button v-on:click="add2()" class="btn btn-primary mx-auto">添加</button>
-                                <button v-on:click="cancel()" class="btn btn-primary">取消</button>
+                                <button v-on:click="cancel2()" class="btn btn-primary">取消</button>
                             </td>
                         </tr>
 
@@ -335,7 +335,7 @@
                     </tbody>
                 </table>
                 <div v-show="showBox" class="w-50 mx-auto">
-                    <div v-on:click="close" class="close">X</div>
+                    <div v-on:click="close2" class="close">X</div>
                     <table class="table table-success">
                         <tr>
                             <td>评测内容编号</td>
@@ -363,7 +363,7 @@
                             <td>
                                 <!-- isAdd返回true，显示添加按钮，否则显示修改按钮 -->
                                 <button v-on:click="update2()" class="btn btn-primary mx-auto">修改</button>
-                                <button v-on:click="cancel()" class="btn btn-primary">取消</button>
+                                <button v-on:click="cancel2()" class="btn btn-primary">取消</button>
                             </td>
                         </tr>
 
@@ -548,7 +548,7 @@
                                 </tbody>
                             </table>
                             <div v-show="showBox" class="w-50 mx-auto">
-                                <div v-on:click="close" class="close">X</div>
+                                <div v-on:click="close2" class="close">X</div>
                                 <table class="table table-success">
                                     <tr>
                                         <td>评测内容编号</td>
@@ -615,6 +615,10 @@
                 updateIndex: 0,
                 updateIndex1: 0,
                 updateIndex2: 0,
+                Sno: '',
+                STUname: '',
+                xueyuan: '',
+                Teacher: '',
                 searchStr: '',//搜索关键字
                 students: [{
                     Sno: '202011',
@@ -630,6 +634,13 @@
 
                 }],
                 searchStr1: '',//搜索关键字
+                Tno: '',
+                Tname: '',
+                Txueyuan: '',
+                TCO: '',
+                Cname: '',
+                TIME: '',
+                TB: '',
                 Teachers: [{//
                     Tno: '201911',
                     Tname: '王鹏',
@@ -648,6 +659,11 @@
                     TB: '辅导员',
                 }],
                 searchStr2: '',//搜索关键字
+                No: "",
+                text: "",
+                Pno: "",
+                Pname: "",
+                score: '',
                 Test: [{
                     No: "a12",
                     text: "课程质量",
@@ -663,6 +679,7 @@
                     score: '92'
                 }]
             },
+
             methods: {
                 add() {
                     let stu = {
@@ -718,7 +735,8 @@
                     // 显示添加按钮，隐藏修改按钮
                     this.isAdd = true;
                     // 清空数据
-                    this.clear();
+                   this.cancel()
+                   
                 },
                 add1() {
                     let Tea = {
@@ -779,6 +797,15 @@
                         this.Teachers.splice(index, 1)
                     }
                 },
+                close1() {
+                    // 隐藏编辑窗口
+                    this.showBox = false;
+                    // 显示添加按钮，隐藏修改按钮
+                    this.isAdd = true;
+                    // 清空数据
+                   this.cancel1()
+                   
+                },
                 add2() {
                     let test = {
                         No: this.No,
@@ -828,6 +855,15 @@
                     if (confirm('确定删除吗？')) {
                         this.Test.splice(index, 1)
                     }
+                },
+                close2() {
+                    // 隐藏编辑窗口
+                    this.showBox = false;
+                    // 显示添加按钮，隐藏修改按钮
+                    this.isAdd = true;
+                    // 清空数据
+                   this.cancel2()
+                   
                 },
             },
             computed: {
