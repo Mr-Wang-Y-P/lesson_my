@@ -1,0 +1,6 @@
+<!--pages/person/person.wxml-->
+<view>
+<image src="../../images/会员用户.png"></image>
+  <text>用户名</text>
+</view>
+

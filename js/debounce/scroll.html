@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .page {
+            height: 100vh;
+            overflow-y: scroll;
+        }
+
+        .box {
+            height: 300vh;
+            background-color: gray;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page">
+        <div class="box"></div>
+    </div>
+    <script src="https://cdn.bootcdn.net/ajax/libs/lodash.js/4.17.21/lodash.min.js"></script>
+    <script>
+        function doScroll() {
+            console.log('scroll~~~~, 检测是否滚动到某位置')
+        }
+        const throttleDoScroll = _.throttle(doScroll,2000);
+        const page = document.querySelector('.page');
+        page.addEventListener('scroll', function () {
+            throttleDoScroll();
+        })
+    </script>
+</body>
+
+</html>

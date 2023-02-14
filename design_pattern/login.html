@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .loginModal {
+            z-index: 9999;
+            width: 60vw;
+            height: 60vh;
+            position: absolute;
+            top: 20vh;
+            left: 20vw;
+            background-color: rgba(0, 0, 0, 0.3);
+        }
+
+        .hide {
+            display: none;
+        }
+
+        .close {
+            position: absolute;
+            right: 20px;
+            top: 0px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- <div class="loginModal">
+        <div class="close">x</div>
+    </div> -->
+    <a href="javascript:;" class="btn">登录</a>
+    <br>
+    <br>
+    <br>
+    <a href="javascript:;" class="btn">登录</a>
+    <script>
+        // 弹窗单例
+        class SignleLoginModal {
+            constructor() {
+                // DOM 
+                const modal = document.createElement('div');
+                modal.className = 'loginModal hide'
+                const close = document.createElement('div');
+                close.className = 'close'
+                close.appendChild(
+                    document.createTextNode('x')
+                )
+                modal.appendChild(close)
+                document.body.appendChild(modal);
+                // var that = this; // 保存了 实例
+                close.addEventListener('click', () => {
+                    // this -> close 
+                    this.hide();
+                })
+            }
+            show() {
+                const modal = document.querySelector('.loginModal');
+                modal.classList.remove('hide')
+            }
+            hide() {
+                const modal = document.querySelector('.loginModal');
+                modal.classList.add('hide')
+            }
+            static getInstance() {
+                if (!SignleLoginModal.instance) {
+                    SignleLoginModal.instance = new SignleLoginModal();
+                }
+                return SignleLoginModal.instance
+            }
+        }
+        // SignleLoginModal
+        // const btns = document.querySelectorAll('.btn');
+        // for (let btn of btns) {
+        // 开销有点大
+        //     btn.addEventListener('click', function() {
+        //         console.log('登录弹窗出来....');
+        //     }, true)
+        // }
+        // 事件的冒泡机制  事件代理 性能 
+        document.body.addEventListener('click', function (event) {
+            if (event.target.className === 'btn') {
+                const modal = SignleLoginModal.getInstance();
+                modal.show();
+                // console.log('登录弹窗出来....')
+                // 如果没有弹过，  实例化一次 
+                // 弹窗显示出来
+            }
+            // if ()
+        })
+
+    // document.querySelector('.close').addEventListener('click', function() {
+    //     console.log('把弹窗隐藏起来....');
+    // })
+
+    </script>
+</body>
+
+</html>

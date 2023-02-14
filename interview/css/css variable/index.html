@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>前端面试题-CSS4 Variable</title>
+    <link rel="icon" href="https://lf3-cdn-tos.bytescm.com/obj/static/xitu_juejin_web//static/favicons/apple-touch-icon.png" />
+    <meta name="description" content="掘金是面向全球中文开发者的技术内容分享与交流平台。我们通过技术文章、沸点、课程、直播等产品和服务，打造一个激发开发者创作灵感，激励开发者沉淀分享，陪伴开发者成长的综合类技术社区。">
+    <meta name="keywords" content="掘金,稀土,Vue.js,前端面试题,Kotlin,ReactNative,Python">
+    <style>
+    /* css 变量如何定义， 定义在哪里   */
+    :root {
+        /* 全局的变量 */
+        --base: #ffc600;
+        --spacing: 10px;
+        --blur: 10px;
+    }
+    body {
+        text-align: center;
+        background-color: #193549;
+        color: white;
+        font-family: serif;
+        font-weight: 100;
+        font-size: 50px;
+    }
+    .controls{
+        margin-bottom: 50px;
+    }
+    input{
+        width: 100px;
+    }
+    img{
+        padding: var(--spacing);
+        background: var(--base);
+        filter:blur(var(--blur));
+    }
+    .h1 {
+        /* var 来 使用这个变量 */
+        color: var(--base);
+    }
+    /* img {
+        background: 
+    } */
+    </style>
+</head>
+<body>
+    <h2>Update CSS Variables with <span class="h1">JS</span></h2>
+    <div class="controls">
+        <label for="spacing">Spacing:</label>
+        <input type="range" id="spacing" name="spacing" min="10" max="200" value="10"
+            data-sizing="px">
+        <label for="blur">Blur:</label>
+        <input type="range" id="blur" name="blur" min="0" max="25" value="10"
+            data-sizing="px">
+        <label for="base">Base Color:</label>
+        <input type="color" id="color" name="base" value="#ffc600">
+    </div>
+    <img src="https://source.unsplash.com/7bwQXzbF6KE/800x500" alt="">
+    <script>
+        //html5 新的表单控件
+        const inputs =document.querySelectorAll('.controls input')
+        function handleUpdate(){
+            const suffix = this.dataset.sizing || '';
+            document.documentElement.style.setProperty(`--${this.name}`,this.value + suffix)
+        }
+        inputs.forEach(input =>input.addEventListener('change',handleUpdate))
+    </script>
+</body>
+</html>

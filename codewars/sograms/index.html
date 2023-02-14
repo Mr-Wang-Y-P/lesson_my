@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<script>
+// function isIsogram(str){
+//   // 解法 
+//   if (str === '') return true;
+//   str = str.toLowerCase();
+//   let arr = str.split(''); // 字母数组 
+//   let answer;
+//   n*n
+//   for (let i = 0; i < arr.length; i++) {
+//     // 外层循环 当前字符 
+//     let char = arr[i];
+//     for (let x = 0; x < arr.length; x++) {
+//         // 内层循环  当前下标
+//         // 当前字符串是 第一次在数组中出现的， 而且位置为x   x变化的？ 
+//         // x 变化的时候， 只可能有两种情况  arr[x] == char  !=char 
+//         if (arr.indexOf(char) == x) { 
+//             continue;
+//         } else if (char != arr[x]) {
+//             answer = true;
+//         } else {
+//             answer = false;
+//             return false 
+//         }
+//     }
+//     // for (j = i + 1; j < arr.length; j++) {
+//     //     if (arr[j] == char) {
+//     //         return false
+//     //     }
+//     // }
+//   }
+//   return answer
+// //   console.log(str);
+//   // 暴力解法  O(n^2)
+
+// }
+// str => arr => sort 
+// function isIsogram(str){
+//     if (str === '') return true;
+//     str = str.toLowerCase();
+//     let arr = str.split('');
+//     arr.sort();// O(nlogn)
+
+
+//     // O(nlogn) +O(n)
+//     // console.log(arr);
+//     for(let i=0;i<arr.length-1;i++){
+//         if(arr[i]===arr[i+1]){
+//             return false;
+//         }
+//     }
+//     return true;
+// }
+function isIsogram(str){
+    if (str === '') return true;
+    str = str.toLowerCase();
+    let arr = str.split('');
+    let obj={};
+
+    for(let i=0;i<arr.length;i++){
+        let char=arr[i];
+        if(obj[char]==1){//重复出现
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
+}
+
+
+console.log(isIsogram('moOse'));
+</script>
+</body>
+</html>

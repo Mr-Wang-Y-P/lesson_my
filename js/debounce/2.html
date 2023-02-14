@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<script>
+function debounce(func, delay) {
+    // let tid;
+    // 闭包
+    // 自由变量？可以被其他函数引用的变量
+    // 减少fun 执行的次数, delay 
+    return function(...args) {
+        // arguments
+        // console.log(args);
+        let that = this;  // 缓存了 this?
+        // console.log(that, args, '--------------');
+        clearTimeout(func.tid)
+        // 定时器， 唯一编号
+        func.tid = setTimeout(function() {
+            // this 覆盖?
+            // this 舍弃
+            // call apply 
+            func.call(that, ...args)
+        }, delay)
+    }
+} 
+let biu = function () {
+    console.log('biu biu biu',new Date())
+}
+
+let boom = function () {
+    console.log('boom boom boom',new Date())
+}
+setInterval(debounce(biu,500),1000)
+setInterval(debounce(boom,2000),1000)
+</script>  
+</body>
+</html>

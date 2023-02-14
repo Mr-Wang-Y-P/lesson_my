@@ -1,0 +1,9 @@
+
+  <view class="dewu-tip">
+    <image src="{{info.pic}}"></image>
+    <view class="title">{{info.title}}</view>
+    <view class="desc">
+      <view class="price">{{info.price}}</view>
+      <view class="info">{{info.doh}}</view>
+    </view>
+  </view>

@@ -1,0 +1,15 @@
+{
+  "name": "fullstack",
+  "version": "1.0.0",
+  "description": "- 小程序  swiper\r   pic   link\r   1. 前后端分离\r     - 前端组件化 用假数据\r       data  fastmock\\\r     - json 数据交换格式\r     - 后端\r       url lacalhost:3000 http 服务？\r       /home json\r - http://localhost:3000/banners  提供一个fastmock 数据接口\r   json?\r     1. 使用node 提供 web http 服务\r       http\r       3000 私服状态\r     2. /banners path\r       /detail 详情页",
+  "main": ".eslintrc.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "lodash": "^4.17.21"
+  }
+}

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SPA</title>
+</head>
+
+<body>
+    <nav id="nav">
+        <a href="#/page1">page1</a>
+        <a href="#/page2">page2</a>
+        <a href="#/page3">page3</a>
+        <a href="?a=1">search</a><!-- 会刷新 -->
+        <a href="http://www.baidu.com">baidu</a>
+    </nav>
+    <div id="container">
+
+    </div>
+    <script>
+        //url 更新 完整更新 会重新加载
+        //url hash 部分 局部 要那个新的内容
+        window.addEventListener('hashchange',function(){
+            // let hash =location.hash.replace('#','');
+            let hash =location.hash.slice(1);
+            console.log(hash);
+        })
+    </script>
+</body>
+
+</html>

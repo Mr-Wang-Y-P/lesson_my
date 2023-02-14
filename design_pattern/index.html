@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>单例模式</title>
+</head>
+<body>
+    <script>
+        // 一个类只能实例化一次
+        //登录弹窗 封装成类 html css js 切换显示和隐藏 封装进去
+        //第一次触发鉴权，实例化一下
+        //再次去触发鉴权，不用实例化，调用它的show 方法
+        class SingleDog{
+            //共有方法 实例上调用
+            show(){
+                console.log('我是一个单例对象公共方法')
+            }
+            //静态方法 在类上调用的方法
+            static getInstance(){
+                // console.log('单例模式由静态方法,只有类本身能调用，不是给实例用的')
+                if(!SingleDog.instance){
+                    SingleDog.instance = new SingleDog();//实例化
+                }
+                return SingleDog.instance;
+            }
+        }
+        SingleDog.getInstance();
+        SingleDog.getInstance()
+        console.log(SingleDog.getInstance()===SingleDog.getInstance());
+        //只能实例化一次 new 不能用
+        //s1 s2 -> 同一个对象地址
+        const s1 = new SingleDog();
+        // s1.show();
+        // s1.getInstance();
+    </script>
+</body>
+</html>

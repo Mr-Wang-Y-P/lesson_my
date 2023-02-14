@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    .row {
+        height: 150px;
+        text-align: center;
+        line-height: 150px;
+        background-color: green;
+        color: white;
+    }
+    .box {
+        height: 100px;
+        position: fixed; /* BFC */
+        top: 0;
+        background-color: pink;
+    }
+    </style>
+</head>
+<body>
+    <div class="row">123</div>
+    <div class="box">007  
+        <a href="javascript:;" id="btn">回到正常文档流</a>
+    </div>
+    <div class="row">456</div>
+    <div class="row">456</div>
+    <div class="row">456</div>
+    <div class="row">456</div>
+    <div class="row">456</div>
+    <div class="row">456</div>
+    <div class="row">456</div>
+    <div class="row">456</div>
+    <div class="row">456</div>
+    <script>
+        const btn = document.getElementById('btn');
+        const box =document.querySelector('.box');
+        btn.addEventListener('click',function(){
+            //box 回归文档流
+            box.style.position = 'static';
+        })
+    </script>
+</body>
+</html>

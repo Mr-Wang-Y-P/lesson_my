@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- @next vue 最新版 -->
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+
+<body>
+    <!-- 挂载点 根组件挂在上去 
+    组件化思想 -->
+    <div id="app"></div>
+    <script>
+        // 创建web应用  三明治
+        // 面向对象开发思想 命名空间
+        const app = Vue.createApp({
+            data() {
+                // 为什么返回的都是一个对象
+                //data 里面用{} 组织了组件要用到的数据 数据驱动
+                // data 对象里 可以被监听
+                return {
+                    counter: 1,
+                    content: "人数",
+                    number: 1,
+                    isShowMeal:"false",
+                    setMeal:"早 中 晚"
+                };
+            },
+            //字符串模板符号，可以换行，特别适合 模板 html 字符串的结构表达
+
+
+
+            template: `
+            {{counter}}
+            <div>{{content}}</div>
+            <div>{{number}}</div>
+                
+            <!--
+                // vue 世界里不做 dom 编程
+            // bindtap v-on:click v-on 事件指令 dom0 dom2 addEventListener
+            // v- 指令的开始
+            // v-on 事件监听指令
+            //  :click  那种事件
+                -->
+            <button v-on:click="add">加</button>&nbsp;
+            <button v-on:click="multiply">减</button>;
+            <hr>
+            <div>
+                <button @click="showOrHideBtnClick">显示或隐藏套餐</button>
+                <div v-if="isShowMeal">
+                    {{setMeal}}
+                </div>
+               
+            </div>
+
+            `,
+            mounted() {
+                console.log('应用挂载到#app节点上了，且显示了')
+                setInterval(() => {
+                    this.counter++;
+                }, 1000)
+            },
+            methods: {
+                showOrHideBtnClick() {
+                this.isShowMeal = !this.isShowMeal
+            },
+                add() {
+                    this.content="进行加一位";
+                    this.number++;
+                },
+                multiply() {
+                    this.content="进行减一位";
+                    this.number--;
+                }
+            },
+        })
+        const vm = app.mount('#app')
+        console.log(app, vm);
+    </script>
+</body>
+
+</html>

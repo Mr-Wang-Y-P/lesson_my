@@ -1,0 +1,7 @@
+/* components/goods/goods.wxss */
+.dewu-tip,.dewu-tip image{
+  width: 100%;
+}
+/* image{
+  width: 375rpx;
+} */

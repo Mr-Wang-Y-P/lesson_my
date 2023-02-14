@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>淘宝</title>
+
+    <script>
+
+        function responsive() {
+
+            const w = window.innerWidth / 10
+
+            // console.log(w);
+
+            // DOM 编程
+
+            // 动态的设置html 字体大小为 1rem , 宽度的1/10 
+
+            document.documentElement.style.fontSize = w + 'px';
+
+
+
+        }
+
+        responsive();
+
+        window.addEventListener('resize', responsive);
+
+    </script>
+
+    <link rel="stylesheet" href="common.css">
+
+</head>
+
+<body>
+
+    <!-- <img src="./1668596492731_rem-8.png" alt="">  -->
+
+    <!-- <div class="box" style="width: 5rem; height: 5rem; background-color:green;"></div> -->
+
+    <!-- 先写html结构  -->
+
+    <!-- BEM国际命名规范 
+
+        Block 
+
+    -->
+
+    <div class="tm-page">
+
+        <!-- Element __ -->
+
+        <div class="tm-page__header">
+
+            <h2>
+
+                <img src="http://gw.alicdn.com/mt/TB1PNLZKXXXXXaTXXXXXXXXXXXX-750-481.jpg" alt="">
+
+            </h2>
+
+        </div>
+
+        <ul>
+
+            <!-- tm-item Block item样式 -->
+
+            <li class="tm-item">
+
+                <!-- tm-item__link Element -->
+
+                <a href="#" class="tm-figure tm-item__link">
+
+                    <img src="https://placeimg.com/350/350/people/grayscale" alt="">
+
+                </a>
+
+                <div class="tm-figcaption">
+
+                    <div class="tm-item__title">
+
+                        <a href="#">Carter's1年式灰色长袖连体衣包脚爬服全棉鲸鱼男婴儿童装115G093</a>
+
+                    </div>
+
+                    <div class="tm-item__price">
+
+                        <span>双11价</span>
+
+                        <strong>$299.86</strong>
+
+                        <small>(满400减100)</small>
+
+                    </div>
+
+                    <div class="tm-item__type">1小时内热卖5885件</div>
+
+                    <a href="#" class="tm-item__btn">马上抢！</a>
+
+                </div>
+
+            </li>
+
+            <li class="tm-item">
+
+                <!-- tm-item__link Element -->
+
+                <a href="#" class="tm-figure tm-item__link">
+
+                    <img src="https://placeimg.com/350/350/people/grayscale" alt="">
+
+                </a>
+
+                <div class="tm-figcaption">
+
+                    <div class="tm-item__title">
+
+                        <a href="#">Carter's1年式灰色长袖连体衣包脚爬服全棉鲸鱼男婴儿童装115G093</a>
+
+                    </div>
+
+                    <div class="tm-item__price">
+
+                        <span>双11价</span>
+
+                        <strong>$299.86</strong>
+
+                        <small>(满400减100)</small>
+
+                    </div>
+
+                    <div class="tm-item__type">1小时内热卖5885件</div>
+
+                    <a href="#" class="tm-item__btn">马上抢！</a>
+
+                </div>
+
+            </li>
+
+            <li class="tm-item">
+
+                <!-- tm-i tem__link Element -->
+
+                <a href="#" class="tm-figure tm-item__link">
+
+                    <img src="https://placeimg.com/350/350/people/grayscale" alt="">
+
+                </a>
+
+                <div class="tm-figcaption">
+
+                    <div class="tm-item__title">
+
+                        <a href="#">Carter's1年式灰色长袖连体衣包脚爬服全棉鲸鱼男婴儿童装115G093</a>
+
+                    </div>
+
+                    <div class="tm-item__price">
+
+                        <span>双11价</span>
+
+                        <strong>$299.86</strong>
+
+                        <small>(满400减100)</small>
+
+                    </div>
+
+                    <div class="tm-item__type">1小时内热卖5885件</div>
+
+                    <a href="#" class="tm-item__btn">马上抢！</a>
+
+                </div>
+
+            </li>
+
+            <li class="tm-item">
+
+                <!-- tm-item__link Element -->
+
+                <a href="#" class="tm-figure tm-item__link">
+
+                    <img src="https://placeimg.com/350/350/people/grayscale" alt="">
+
+                </a>
+
+                <div class="tm-figcaption">
+
+                    <div class="tm-item__title">
+
+                        <a href="#">Carter's1年式灰色长袖连体衣包脚爬服全棉鲸鱼男婴儿童装115G093</a>
+
+                    </div>
+
+                    <div class="tm-item__price">
+
+                        <span>双11价</span>
+
+                        <strong>$299.86</strong>
+
+                        <small>(满400减100)</small>
+
+                    </div>
+
+                    <div class="tm-item__type">1小时内热卖5885件</div>
+
+                    <a href="#" class="tm-item__btn">马上抢！</a>
+
+                </div>
+
+            </li>
+
+            <li class="tm-item">
+
+                <!-- tm-item__link Element -->
+
+                <a href="#" class="tm-figure tm-item__link">
+
+                    <img src="https://placeimg.com/350/350/people/grayscale" alt="">
+
+                </a>
+
+                <div class="tm-figcaption">
+
+                    <div class="tm-item__title">
+
+                        <a href="#">Carter's1年式灰色长袖连体衣包脚爬服全棉鲸鱼男婴儿童装115G093</a>
+
+                    </div>
+
+                    <div class="tm-item__price">
+
+                        <span>双11价</span>
+
+                        <strong>$299.86</strong>
+
+                        <small>(满400减100)</small>
+
+                    </div>
+
+                    <div class="tm-item__type">1小时内热卖5885件</div>
+
+                    <a href="#" class="tm-item__btn">马上抢！</a>
+
+                </div>
+
+            </li>
+
+            <li class="tm-item">
+
+                <!-- tm-item__link Element -->
+
+                <a href="#" class="tm-figure tm-item__link">
+
+                    <img src="https://placeimg.com/350/350/people/grayscale" alt="">
+
+                </a>
+
+                <div class="tm-figcaption">
+
+                    <div class="tm-item__title">
+
+                        <a href="#">Carter's1年式灰色长袖连体衣包脚爬服全棉鲸鱼男婴儿童装115G093</a>
+
+                    </div>
+
+                    <div class="tm-item__price">
+
+                        <span>双11价</span>
+
+                        <strong>$299.86</strong>
+
+                        <small>(满400减100)</small>
+
+                    </div>
+
+                    <div class="tm-item__type">1小时内热卖5885件</div>
+
+                    <a href="#" class="tm-item__btn">马上抢！</a>
+
+                </div>
+
+            </li>
+
+            <li class="tm-item">
+
+                <!-- tm-item__link Element -->
+
+                <a href="#" class="tm-figure tm-item__link">
+
+                    <img src="https://placeimg.com/350/350/people/grayscale" alt="">
+
+                </a>
+
+                <div class="tm-figcaption">
+
+                    <div class="tm-item__title">
+
+                        <a href="#">Carter's1年式灰色长袖连体衣包脚爬服全棉鲸鱼男婴儿童装115G093</a>
+
+                    </div>
+
+                    <div class="tm-item__price">
+
+                        <span>双11价</span>
+
+                        <strong>$299.86</strong>
+
+                        <small>(满400减100)</small>
+
+                    </div>
+
+                    <div class="tm-item__type">1小时内热卖5885件</div>
+
+                    <a href="#" class="tm-item__btn">马上抢！</a>
+
+                </div>
+
+            </li>
+
+            <li class="tm-item">
+
+                <!-- tm-item__link Element -->
+
+                <a href="#" class="tm-figure tm-item__link">
+
+                    <img src="https://placeimg.com/350/350/people/grayscale" alt="">
+
+                </a>
+
+                <div class="tm-figcaption">
+
+                    <div class="tm-item__title">
+
+                        <a href="#">Carter's1年式灰色长袖连体衣包脚爬服全棉鲸鱼男婴儿童装115G093</a>
+
+                    </div>
+
+                    <div class="tm-item__price">
+
+                        <span>双11价</span>
+
+                        <strong>$299.86</strong>
+
+                        <small>(满400减100)</small>
+
+                    </div>
+
+                    <div class="tm-item__type">1小时内热卖5885件</div>
+
+                    <a href="#" class="tm-item__btn">马上抢！</a>
+
+                </div>
+
+            </li>
+
+        </ul>
+
+    </div>
+
+</body>
+
+</html>

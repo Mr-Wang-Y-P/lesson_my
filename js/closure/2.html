@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // function func(cb) {
+        //     setTimeout(() => {
+        //         console.log('aaa')
+        //         cb();
+        //     },0)
+        //     function cb() {
+        //         console.log('bbb')
+        //     }
+        // }
+        // func();
+        // resolve 解决了 reject 失败了
+        // 有一个耗时任务 es6 Promise pending
+        const p =new Promise((resolve,reject)=>{
+            //耗时任务
+            setTimeout(()=>{
+                console.log(p);
+                // resolve('111');
+                reject('不好意思，'); // 解决失败
+                console.log(p);
+            },1000)
+        });//异步问题
+        // console.log(p);
+        //开始时pending 不会执行
+        p.then((data)=>{
+            console.log(data)
+        }).catch(e =>{
+            console.log('失败了')
+        })
+    </script>
+</body>
+
+</html>

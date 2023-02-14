@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // Promise 
+        // 1. 手写一个Promise 类  覆盖原来
+        // 内部 Promise 
+        class Promise {
+            constructor(executor) {
+                // 
+                this.status = 'pending';
+                let resolve = value =>{
+                    this.status = 'fulfilled';
+                }
+                executor(resolve); // 立即执行 
+            }
+            then(cb) {
+                if(this.status == 'fulfilled'){
+                    cb();
+                }
+            }
+        }
+        let p = new Promise((resolve, reject) => {
+            setTimeout(() => {
+                // resolve()
+            }, 3000)
+
+        })
+        p
+            .then(() => {
+                console.log('-----------')
+            })
+    </script>
+</body>
+
+</html>

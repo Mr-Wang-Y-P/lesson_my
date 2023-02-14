@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+</head>
+
+<body>
+    <script>
+        //程序要运行，启动执行的最小单元 单线程
+        fetch('http://localhost:3000/post')
+            .then(res => res.json())
+            .then(res => {
+                console.log(res);
+            })
+            .then(() => { 
+                console.log(2)
+            })
+        console.log(1)
+    </script>
+
+</body>
+
+</html>

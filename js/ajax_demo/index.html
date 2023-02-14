@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.2.3/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <table class="mt-5 table table-bordered table-success">
+            <thead>
+                <th>序号</th>
+                <th>姓名</th>
+                <th>年龄</th>
+                <th>家乡</th>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+        <form name="studentForm">
+            <div class="mb-3">
+                <label for="idInput" class="form-label">序号</label>
+                <input type="number" name="id" class="form-control" id="idInput" required placeholder="请输入序号">
+            </div>
+            <div class="mb-3">
+                <label for="nameInput" class="form-label">姓名</label>
+                <input type="text" name="name" class="form-control" id="nameInput" required placeholder="请输入名字">
+            </div>
+            <div class="mb-3">
+                <label for="ageInput" class="form-label">年龄</label>
+                <input type="number" name="age" class="form-control" id="ageInput" required placeholder="请输入年龄 ">
+            </div>
+            <div class="mb-3">
+                <label for="hometownInput" class="form-label">家乡</label>
+                <input type="text" name="hometown" class="form-control" id="hometownInput" required placeholder="请输入家乡">
+            </div>
+            <div class="mb-3">
+                <button type="submit" class="btn btn-primary" onclick="window.location.reload();">提交</button>
+            </div>
+        </form>
+    </div>
+    <script>
+        // json   forEach  DOM 
+        // json  分离在student.json中
+        // 依赖http 服务 
+        // student.JSON 提供http 服务 文件 ftp
+        // fetch 发送一个ajax http请求
+        const oTBody = document.querySelector('table tbody');
+
+        fetch('http://localhost:3000/students')
+            .then(data => data.json())
+            .then(data => {
+                console.log(data);
+                data.forEach(item => {
+                    oTBody.innerHTML += `
+                <tr>
+                    <td>${item.id}</td>
+                    <td>${item.name}</td>
+                    <td>${item.age}</td>
+                    <td>${item.hometown}</td>
+                </tr>
+                `
+                })
+
+            })
+        const oForm = document.forms["studentForm"];
+        oForm.addEventListener('submit', function (event) {
+            event.preventDefault();
+            // console.log(this);
+            const student = {
+                id: this["id"].value,
+                name: this["name"].value,
+                age: this["age"].value,
+                hometown: this["hometown"].value
+            }
+            // console.log(student);
+            fetch('http://localhost:3000/students', {
+
+                
+                method: 'POST',
+                body: JSON.stringify(student),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }).then(data => data.json())
+                .then(data => {
+                    // console.log(data);
+                })
+        })
+    </script>
+</body>
+
+</html>

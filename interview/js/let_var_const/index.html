@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // console.log(func());
+        //函数提升的是值
+        //定义变量
+        //作用域  全局作用域 范围
+        var a =1;   //挂载在全局对象上 window
+        let b= 2;   //支持块级作用域 不会挂载window
+        //代码从上到下执行
+        // console.log(d);  //报错
+        //js 变量会提升，变量的定义，提升到它所在的作用域的最顶端
+        function func(){
+            // console.log(d,'-----');
+            let d=2;//var 会变量的声明提升 并不是好事，代码的可读性被影响    let 不会提升
+        }
+        // console.log(func());
+        // console.log(d);
+        var c= 3;
+        // var c;
+        // c=3;
+    </script>
+</body>
+</html>

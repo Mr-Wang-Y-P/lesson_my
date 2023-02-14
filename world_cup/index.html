@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>世界杯-招商银行</title>
+    <script>
+        // js 阻塞性  适配 所有css 前面 
+        function responsive() {
+            const w = window.innerWidth / 10
+            // console.log(w);
+            // DOM 编程
+            // 动态的设置html 字体大小为 1rem , 宽度的1/10 
+            document.documentElement.style.fontSize = w + 'px';
+
+        }
+        responsive();
+        window.addEventListener('resize', responsive);
+    </script>
+    <link rel="stylesheet" href="./common.css">
+</head>
+
+<body>
+    <!-- <div class="box"></div> -->
+    <div class="container">
+        <!-- loading状态 -->
+        <div class="load">
+            <div class="loadImg">
+                <div class="loadTxt">loading</div>
+                <div class="circle"></div>
+                <div class="circle1"></div>
+            </div>
+        </div>
+        <div class="global" style="transform:translateZ(-8.89333rem);">
+            <div class="screen ease">
+                <!-- 首页 -->
+                <section class="layer layer1">
+
+                </section>
+                <!-- 赛程页面 -->
+                <section class="layer layer2"></section>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.bootcdn.net/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
+    <script>
+        //event 不跟html css 静态页面文档流渲染 抢时间
+        // 文档流+盒子模型=布局+css 细节=静态页面 优先级最高的
+        window.onload = function () {
+            const oLoad = document.querySelector('.load');
+            const oScreen = document.querySelector('.screen');
+        setTimeout(function() {
+            // 数据请求要2秒
+            //隐藏load 状态元素， 离开了文档流
+            oLoad.style.display = 'none';
+        }, 2000)
+        // setTimeout(function() {
+        //     oScreen.classList.add('screen_x90');
+        // }, 6000)
+        // 手势库
+        const hammerTest = new Hammer(document.querySelector('.container'));
+        hammerTest.on('pan panmove', function(ev) {
+            // console.log(ev);
+            if(ev.additionalEvent=='panup'){
+                //上提
+                oScreen.classList.add('screen_x90');
+            }
+            else if(ev.additionalEvent=='pandown'){
+                //下拉
+                oScreen.classList.remove('screen_x90');
+            }
+        })
+        }
+       
+      
+    </script>
+</body>
+
+</html>

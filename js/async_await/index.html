@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        //JS 单线程语言
+        //异步 计时器 js event loop 概念
+        // 耗时任务的时候，网络请求
+        //回调函数 放进event loop，时间到了 放回函数 再运行
+        // JS 在单线程之外，有个event loop  池子
+        setTimeout(() => {
+            console.log(2)
+        }, 2000);
+        //同步代码
+        // console.log(2);
+        //
+        // for(let i=0;i<100000;i++){
+
+        // }
+        // while(true){
+
+        // }
+        //单线程 ：将一直运行while，无法运行下面的内容
+        console.log(1);//不花什么时间
+    </script>
+</body>
+
+</html>

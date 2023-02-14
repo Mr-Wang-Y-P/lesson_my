@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>信息编辑页</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <div class="panel panel-info">
+        <div class="panel-heading">
+          <h3 class="panel-title">学生信息</h3>
+        </div>
+        <div class="panel-body">
+          <legend>信息录入</legend>
+
+          <div class="form-group">
+            <label for="">姓名</label>
+            <input
+              type="text"
+              class="form-control"
+              id="txtName"
+              placeholder="请输入名字"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="">性别</label>
+            <input
+              type="text"
+              class="form-control"
+              id="txtGender"
+              placeholder="请输入性别"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="">年龄</label>
+            <input
+              type="text"
+              class="form-control"
+              id="txtAge"
+              placeholder="请输入年龄"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="">专业</label>
+            <input
+              type="text"
+              class="form-control"
+              id="txtProfessor"
+              placeholder="请输入专业"
+            />
+          </div>
+          <button onclick="saveHandle()" class="btn btn-block btn-primary">
+            提交
+          </button>
+        </div>
+      </div>
+    </div>
+    <!-- <script src="./scripts/utils.js"></script>
+    <script src="./scripts/db.js"></script> -->
+    <script>
+//    **增加**
+	function saveHandle(){
+		console.log('执行了这个函数')
+		var  strPeople = localStorage.getItem('my-student');
+		var people = []; // 所有人员信息
+		if(strPeople){
+			people = JSON.parse(strPeople)
+		} 
+		var person = {} //定义一个对象
+		person.name = document.getElementById('txtName').value; // 名称
+		person.gender = document.getElementById('txtGender').value;  // 性别
+		person.age = document.getElementById('txtAge').value; // 年龄
+		person.professor= document.getElementById('txtProfessor').value;  // 老师
+		
+		if(person.name) { // 给个必填条件进行存储，否则进行提示
+			people.push(person)
+			localStorage.setItem('my-student',  JSON.stringify(people)); // 存储
+		}else {
+			alert('名称不能为空')
+		}
+	}
+
+    function delOne(id) { //这里接收了id，当然调用的时候也要给参数的
+	var strPeople = localStorage.getItem('my-student');
+	var people = [];
+	if(strPeople){
+		people = JSON.parse(strPeople);
+	}
+	console.log(id)
+	if(confirm('是否确认删除内容？')){
+		// findIndex 查找复核条件的数据的索引下标
+		var index = people.findIndex(function ( item){
+				return item.id == id
+		})
+		console.log(index)
+		people.splice(index, 1); // 从数组中农删除元素
+		loaclStorage.setItem('my-student',  JSON.stringify(people));
+		initHtml(); // 更新渲染页面
+	}
+}
+
+
+    </script>
+  </body>
+</html>

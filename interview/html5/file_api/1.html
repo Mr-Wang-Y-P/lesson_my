@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="file" id="files" multiple />
+    <div id="list"></div>
+    <div id="images"></div>
+    <script>
+        // js 新能力 老的设备不支持 
+        // 浏览器嗅探
+        // File  文件对象
+        // FileReader 文件读操作对象
+        // FileList 文件列表对象
+        // 二进制流对象 blob
+        if (!(window.File && window.FileReader && window.FileList && window.Blob)) {
+            alert('当前浏览器对FileAPI的支持不完善')
+        }
+
+        // function handleFileSelect(event) {
+        //     const { files } = event.target; // FileList
+        //     // console.log(files)
+        //     if (!files.length) {
+        //         console.log('没有选择文件')
+        //         return;
+        //     }
+
+        //     console.log('选中的文件信息是：', files); // File
+        //     const innerHTML = [];
+        //     const reImage = /image.*/; //正则 File type 是不是图片  . 通配符 * 匹配一次或多次
+        //     for (let file of files) {
+        //         if (!reImage.test(file.type)) {
+        //             continue;
+        //         }
+        //         innerHTML.push(
+        //             `
+        //                 <li>
+        //                     <strong>${file.name}</strong>
+        //                     (${file.type || "n/a"}) -
+        //                     ${(file.size / ( 1024 * 1024 )).toFixed(2)} Mb
+        //                 </li>
+        //             `
+        //         )
+        //     }
+        //     document.querySelector('#list').innerHTML = `<ul>${innerHTML.join("")}</ul>`
+        // }
+
+        function handleFileSelect(event) {
+            let { files } = event.target
+            if (!files.length) {
+                return;
+            }
+
+            let vm = document.createDocumentFragment(); // js DOM性能优化 文档碎片
+            let re = /image.*/;
+            let loaded = 0; // 加载完成了多少个文件  FileReader 
+            let total = 0; // 所有图片的数量 
+
+            for (let file of files) {
+                re.test(file.type) && total++;
+            }
+            const handleLoadStart = (ev, file) => {
+                console.log(`>>> Start load ${file.name} `)
+            }
+            const handleOnLoad = (ev, file) => {
+                console.log(`<<< End load ${file.name}`);
+                const img = document.createElement('img');
+                // console.log(ev);
+                img.src = ev.target.result //base64
+                vm.appendChild(img); //挂载了多次， 开销很小
+                if (++loaded === total) {
+                    // 如果没有文档碎片  性能就不好， 访问images DOM次数多，挂载的真实DOM开销多
+                    // vm 内存中
+                    // vm 最后不会在DOM 中
+                    document.querySelector('#images').appendChild(vm);
+                }
+            }
+            for (let file of files) {
+                if (!re.test(file.type)) {
+                    continue;
+                }
+                // 在前端做上传功能 前端获取文件内容， 文件的压缩
+                const reader = new FileReader();
+                reader.onloadstart = ev => handleLoadStart(ev, file);
+                reader.onload = ev => handleOnLoad(ev, file);
+                reader.readAsDataURL(file);
+            }
+
+        }
+
+        document
+            .querySelector('#files')
+            .addEventListener('change', handleFileSelect, false);
+
+    </script>
+</body>
+
+</html>

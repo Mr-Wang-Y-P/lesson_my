@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        .box {
+            background-color: white;
+            opacity: 0.5;
+            width: 30rem;
+            height: 20rem;
+        }
+    </style>
+    <title>主页</title>
+</head>
+
+<body class="container hidden" style="background:url(https://ts1.cn.mm.bing.net/th/id/R-C.d742d8f3173ff51cf523862a91073913?rik=fdr5bwZnFTOeMg&riu=http%3a%2f%2fimg.zcool.cn%2fcommunity%2f01cd34574405ce6ac725550b683178.gif&ehk=Wu%2bjfO43ihXGArM2AQ7F5P3Jh1ClnvuIwrjEAbOywcQ%3d&risl=&pid=ImgRaw&r=0) ;">
+
+    <div class="box mx-auto border rounded mt-5">
+        <h2 class="text-center">用户登录</h2>
+        <form id="loginform" method="post">
+            <div class="form-group">
+                <label for="exampleInput">用户名</label>
+                <input type="text" class="form-control" id="exampleInput" placeholder="请输入用户名">
+            </div>
+            <div class="form-group">
+                <label for="exampleInput">密码</label>
+                <input type="password" class="form-control" id="exampleInput" placeholder="请输入密码">
+            </div>
+            <div class="form-group d-flex">
+                <p>登录类型:</p>
+                <div class="form-check mx-1">
+                    <input type="radio" class="form-check-input" name="Type" value="管理员" id="Type1"
+                        onchange="OnRadio()">
+                    <label for="Type1" class="form-check-label">管理员</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="Type" value="学生" id="Type2" onchange="OnRadio()">
+                    <label for="Type2" class="form-check-label">学生</label>
+                </div>
+            </div>
+        </form>
+        <div class="d-flex mt-3 justify-content-center">
+            <a href="guanliyuan.html" data="" id="denglu"><button class="mr-4 bg-primary rounded">登录</button></a>
+            <a href="zhuce.html"><button class="bg-primary rounded">注册</button></a>
+        </div>
+    </div>
+    <Script>
+        function OnRadio() {
+            localStorage.clear();
+            let a = document.getElementById('denglu')
+            let b = document.getElementById('Type1')
+            let c = document.getElementById('Type2')
+            if (b.checked === true) {
+                localStorage.setItem('option', 'admin');
+            }
+            else if (c.checked === true) {
+                localStorage.setItem('option', 'student');
+            }
+        }
+        //用户名，密码不能为空
+        function validate_required(target) {
+            if (target.value == null || target.value == "") {
+                return false;
+            } else {
+                return true;
+            }
+        }
+
+        //用户名首字母不能为数字
+        function valid_character(ch) {
+            if (ch >= "0" && ch <= "9") {
+                return false;
+            } else {
+                return true;
+            }
+
+        }
+        //用户名 长度范围
+        function valid_length(str, min, max) {
+            if (str.length >= min && str.length <= max) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        //判断总体
+        function validForm() {
+            var Name = document.getElementById("Name");
+            var pwd = document.getElementById("pwd");
+            if (!validate_required(Name)) {
+                alert("用户名不能为空，请输入登录使用的用户名！");
+                return false;
+            }
+            if (!validate_required(pwd)) {
+                alert("密码不能为空，请输入登录使用的密码！");
+                return false;
+            }
+            //  获取填写的信息用charAt方法获取第一位字符
+            if (!valid_character(Name.value.charAt(0))) {
+                alert("登录用户名首字符不能为数字！");
+                return false;
+            }
+            if (!valid_length(Name.value, 6, 20)) {
+                alert("登录用户名的长度应当在6和20个字符（含）之间");
+                return false;
+            }
+            return true;
+        }
+
+    </Script>
+</body>
+
+</html>

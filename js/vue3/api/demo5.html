@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+
+<body>
+    <!-- 根节点 -->
+    <div id="app">
+
+    </div>
+    <script>
+        //局部组件
+         const Website={
+            template:`
+           <h2>js胖.com</h2>
+            `
+        }
+        const Describe={
+            template:`
+            <div>
+               技术胖的博客
+             </div>
+            `
+        }
+        const Counter={
+            props:{
+                count:{
+                    type:Number,
+                    // required:true
+                    default:1
+                }
+            },
+            data(){ //私有数据
+                return {
+                    newCount:this.count
+                }
+            },
+            template:`
+            <div>
+             {{newCount}}
+             <button @click="newCount++">增加+1</button>
+            </div>
+            `
+        }
+        const app = Vue.createApp({
+            data() {
+                return {
+                   count:1
+                };
+            },
+            methods: {
+                add() {
+                    this.count++;
+                }
+            },
+            computed: {
+
+            },
+           components:{
+                'website':Website,
+                'describe':Describe,
+                'counter':Counter
+           },
+            template:
+                `
+                <counter :count="count"></counter>
+                <counter></counter>
+            <website></website>
+            <describe></describe>
+            `
+
+        });
+        //全局组件
+        // app.component('website',{
+        //     template:`
+        //     <h2>js胖.com</h2>
+        //     `
+        // })
+        // app.component('describe',{
+        //     template:`
+        //     <div>
+        //       技术胖的博客
+        //     </div>
+        //     `
+        // })
+       
+        app.mount('#app')
+    </script>
+</body>
+
+</html>

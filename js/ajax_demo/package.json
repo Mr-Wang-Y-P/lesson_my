@@ -1,0 +1,15 @@
+{
+  "name": "ajax_demo",
+  "version": "1.0.0",
+  "description": "- 前后端分离\r         table\r         后端 ？",
+  "main": "index.js",
+  "scripts": {
+    "dev": "json-server --watch student.json"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "json-serve": "^0.1.0"
+  }
+}

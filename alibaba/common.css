@@ -1,0 +1,170 @@
+html {
+    overflow-x:hidden; /*水平不能叮叮当当*/
+    overflow-y:scroll;
+}
+/* 性能 */
+body, dl, dt, dd, ul, ol, li, pre, form, fieldset, input, p, blockquote, th, td {
+    font-weight:400;
+    margin:0;
+    padding:0;
+}
+h1, h2, h3, h4, h4, h5 {
+    margin:0;
+    padding:0;
+}
+body {
+    background-color:#FFFFFF;
+    color:#666666;
+    /* 继承 */
+    font-family:Helvetica,Arial,sans-serif;
+    font-size:12px;
+    text-align:left;
+}
+select {
+    font-size:12px;
+}
+table {
+    border-collapse:collapse;
+}
+fieldset, img {
+    border:0 none;
+}
+fieldset {
+    margin:0;
+    padding:0;
+}
+fieldset p {
+    margin:0;
+    padding:0 0 0 8px;
+}
+legend {
+    display:none;
+}
+address, caption, em, strong, th, i {
+    font-style:normal;
+    font-weight:400;
+}
+table caption {
+    margin-left:-1px;
+}
+hr {
+    border-bottom:1px solid #FFFFFF;
+    border-top:1px solid #E4E4E4;
+    border-width:1px 0;
+    clear:both;
+    height:2px;
+    margin:5px 0;
+    overflow:hidden;
+}
+ol, ul {
+    list-style-image:none;
+    list-style-position:outside;
+    list-style-type:none;
+}
+caption, th {
+    text-align:left;
+}
+q:before, q:after, blockquote:before, blockquote:after {
+    content:””;
+}
+
+a {
+    text-decoration: none;
+}
+
+/* 页面样式 */
+.tm-page {
+    min-height: 100vh;
+    background-color: #ee0a3b;
+    position: relative;
+    font-size: 24px;  /*mobile  24  pc  12*/
+} 
+.tm-page__header img {
+    width: 10rem;
+}
+
+.tm-page ul {
+    padding: 0.13333rem;
+}
+
+.tm-item {
+    display: table;  /* 显示方式*/
+    width: 100%;
+    margin-bottom: 1px;
+    background-color: #fff;
+}
+.tm-figure {
+    width:2.34667rem;
+    height:2.34667rem;
+}
+.tm-figure img {
+    width: 100%;
+    height: 100%;
+}
+.tm-figure, .tm-figcaption {
+    display: table-cell;
+    vertical-align: top;
+    padding: 0.16rem 0;
+    background-color: #fff;
+}
+.tm-figcaption {
+    position: relative;
+}
+.tm-item__title a {
+    color: #333;
+    line-height: 1.25;
+    overflow: hidden;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    box-orient: vertical;
+    display:-webkit-box;
+    display: box;
+}
+.tm-item__price {
+    padding: 0.15rem 0 0.2rem;
+}
+.tm-item__price span {
+    display: inline-block;
+    background-color: #f32a4c;
+    vertical-align: middle;
+    border-radius: 0.026667rem;
+    padding: 0.026667rem 0.08rem 0.013333rem;
+    color: #fff;
+    font-weight: 700;
+    margin-right: 0.06667rem;
+    font-size: 11px;
+}
+.tm-item__price strong {
+    display: inline-block;
+    vertical-align: middle;
+    font-weight: 700;
+    color: #ee0a3b;
+    font-size: 16px;
+    margin-right: 0.16rem;
+}
+.tm-item__price small {
+    display: inline-block;
+    vertical-align: middle;
+    font-weight: 700;
+    color: #ee0a3b;
+    font-size: 12px;
+}
+.tm-item__btn {
+    position: absolute;
+    width: 2.13333rem;
+    height: 0.64rem;
+    line-height: 0.64rem;
+    background-color: #f5294c;
+    text-align: center;
+    color: #fff;
+    font-weight: 700;
+    font-size: 14px;
+    bottom: 0.13333rem;
+    right: 0.2rem;
+    border-radius: 0.0266667rem;
+}
+.tm-item__type {
+    color: #ff6a30;
+    font-size: 16px;
+}

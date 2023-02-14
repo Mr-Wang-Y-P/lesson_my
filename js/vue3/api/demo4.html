@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+
+<body>
+    <!-- 根节点 -->
+    <div id="app">
+
+    </div>
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    count: 1,
+                    price:20,
+                    total:0
+                };
+            },
+            methods: {
+                add() {
+                    this.count++;
+                }
+            },
+            computed: {
+
+            },
+            watch:{
+                // count(){
+                //     console.log('count changed')
+                // },
+                count(){
+                    this.total=this.price*this.count;
+                }
+            },
+            mounted(){
+                this.total=this.price*this.count;
+            },
+            template:
+                `
+            <div>
+                <button @click="add">+1</button>
+                {{count}}
+            </div>
+            总价{{total}}
+            `
+
+        });
+        app.mount('#app')
+    </script>
+</body>
+
+</html>

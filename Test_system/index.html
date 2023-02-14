@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/popper.js/1.15.0/umd/popper.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <title>管理信息</title>
+</head>
+
+<body class="container"
+    style="background:url(https://ts1.cn.mm.bing.net/th/id/R-C.d742d8f3173ff51cf523862a91073913?rik=fdr5bwZnFTOeMg&riu=http%3a%2f%2fimg.zcool.cn%2fcommunity%2f01cd34574405ce6ac725550b683178.gif&ehk=Wu%2bjfO43ihXGArM2AQ7F5P3Jh1ClnvuIwrjEAbOywcQ%3d&risl=&pid=ImgRaw&r=0);background-repeat: no-repeat;background-size: cover">
+
+    <div>
+        <nav class="navbar navbar-light bg-dark fixed-top  navbar-expand-md">
+            <a class="navbar-brand text-primary disabled" href="#">教学质量网络测评系统</a>
+            <button class="navbar-toggler disabled" data-target="#colla" data-toggle="collapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="colla">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="./html/denglu.html" id="a1">登录</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="a2" href="./html/student.html">学生信息管理</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="a3" href="./html/teacher.html">教师信息管理</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">教学质量网络测评信息</a>
+
+                        <div class="dropdown-menu">
+                            <div class="dropdown-item">
+                                <a href="#" id="a4">添加信息</a>
+                            </div>
+                            <div class="dropdown-item">
+                                <a href="#" id="a5">查询信息</a>
+                            </div>
+                            <div class="dropdown-item">
+                                <a href="#" id="a6">更新信息</a>
+                            </div>
+                            <div class="dropdown-item">
+                                <a href="#" id="a7">删除信息</a>
+                            </div>
+                            <div class="dropdown-item">
+                                <a href="#" id="a8">信息统计</a>
+                            </div>
+                        </div>
+                    </li>
+
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <script>
+        let arr=[a1,a2,a3,a4,a5,a6,a7,a8]
+        for(let i=1;i<=7;i++){
+            arr[i].onclick = function (e) {
+            alert("请先登录在进行操作！");
+            return false;
+        }
+        }
+    </script>
+</body>
+
+</html>

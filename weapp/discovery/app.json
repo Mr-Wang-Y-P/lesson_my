@@ -1,0 +1,35 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/introduction/introduction",
+    "pages/vehicles/vehicles"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "Weixin",
+    "navigationBarTextStyle": "black"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "tabBar": {
+    "color": "#a9b7b7",
+    "selectedColor": "#11cd6e",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "images/204首页.png",
+        "selectedIconPath": "images/204首页.png"
+      },
+      {
+        "pagePath": "pages/introduction/introduction",
+        "text": "介绍",
+        "iconPath": "images/介绍.png",
+        "selectedIconPath": "images/介绍.png"
+      }
+    ]
+  }
+}

@@ -1,0 +1,6 @@
+swiper,swiper-item{
+  width: 100%;
+}
+swiper-item image{
+  width: 100%;
+}

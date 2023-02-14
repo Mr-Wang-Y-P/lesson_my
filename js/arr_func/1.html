@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<ul id="root">
+
+</ul>
+<script>
+// 前端
+// 拉去数据 ？API  
+//  https://www.fastmock.site/mock/fc09142a9029fcb292822d4ee872f52b/beers/banners 接口地址
+//  后端
+// 异步
+const list = document.getElementById('root');
+const p = fetch('https://www.fastmock.site/mock/fc09142a9029fcb292822d4ee872f52b/beers/banners')
+// console.log(p); 
+// pending  promise 启示状态
+// fulfilled 成功解决  
+// rejected 失败
+// 控制执行流程
+p
+    .then(res =>  res.json() )
+    // promise 实例
+    .then(data => {
+        console.log(data);
+        // DOM 
+        const lis = data.map(item => `
+            <li>
+                <div>
+                    ${item.id}
+                    ${item.title}
+                    <img src="${item.img}">
+                </div>
+            </li>
+        `)
+        list.innerHTML = lis.join('');
+       
+    })
+    .catch(e => {
+        console.log(e)
+    })
+</script>
+</body>
+</html>

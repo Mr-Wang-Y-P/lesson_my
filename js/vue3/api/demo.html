@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+<body>
+    <!-- 根节点 -->
+    <div id="app">
+       
+    </div>
+    <script>
+        const app =Vue.createApp({
+            data() {
+                return {
+                    count:1,
+                    msg: `<div>
+                        <i>hello message</i>
+                        <h1>hello message</h1>
+                        </div>
+                        `,
+                };
+            },
+            methods: {
+                handleSubmit(e){
+                    // e.preventDefault();
+                    // console.log('---')
+                }
+            },
+            template:
+            `
+            <div v-html="msg">{{msg}}</div>
+                <input v-model.lazy="count"></input>
+                {{count}}
+               <from @submit.prevent="handleSubmit">
+                <input type="text" placeholder="请输入" @keypress.enter="handleSubmit"></input>
+                <button type="submit">默认提交</button>
+                </from> 
+            `
+            
+        });
+        app.mount('#app')
+    </script>
+</body>
+</html>

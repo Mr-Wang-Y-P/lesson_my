@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>前端MVVM设计模式</title>
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+
+<body>
+    <!-- 后端设计模式？ MVC   -->
+    <!-- M Model data() return {}
+V View  template 
+VM ViewModel  -->
+    <div id="app"></div>
+    <script>
+        const app = Vue.createApp({
+            // 私有数据
+            data() {
+                //1 在这里定义了数据， 也就是model数据
+                return {
+                    title: '经涛伟略',
+                    msg: '余朝军同学的快手SP Offer下来了',
+                    counter: 1,
+                    showTitle: true
+                }
+            },
+            beforeCreate() {
+                // 初始化事件和生命周期注册
+                console.log('beforeCreate， 创建完成前')
+            },
+            // 组件实例被创建 
+            created() {
+                // {{}} 响应式
+                console.log('created, 已经创建完成， 内存')
+            },
+            // 生 挂载  长  去
+            // 生命周期钩子函数， 自动执行
+            // 组件实例被挂载
+            // 模板的编译 compile 
+            beforeMount() { // vm 
+                // template -> dom string 
+                console.log('beforeMount, 挂载开始前')
+            },
+            // innerHTML +=   appendChild
+            mounted() {
+                // 是真实DOM
+                console.log('mounted, 组件挂载了...');
+                setTimeout(() => {
+                    this.title = '新标题'
+                }, 2000)
+            },
+            // 
+            beforeUpdate() {
+                console.log('before update')
+                console.log(document.getElementById('app').innerHTML)
+            },
+            // 更新
+            updated() {
+                console.log('已完成更新')
+                console.log(document.getElementById('app').innerHTML)
+            },
+            // 卸载阶段
+            beforeUnmount() {
+                console.log('beforeUnMount')
+                console.log(document.getElementById('app').innerHTML)
+            },
+            unmounted() {
+                console.log('unmounted');
+                console.log(document.getElementById('app').innerHTML)
+            },
+            methods: {
+                doStart() {
+                    this.counter++
+                },
+                toggleTitle() {
+                    this.showTitle = !this.showTitle
+                }
+            },
+            // 2  定义了模板 也就是view 
+            template: `
+    <div>
+        <h1>{{msg}}, 点赞 {{counter}}</h1>
+        <button @click="doStart">点赞+1</button>
+        <my-title :title="title" v-if="showTitle" />
+        <button @click="toggleTitle">切换标题组件</button>
+    </div>
+  `
+            // VM　自动的关联，　由ｖｕｅ　来做
+        })
+        // MVVM 组件化 
+        app.component('my-title', {
+            props: ['title'],
+            template: `<h1>{{title}}</h1>`,
+            created() {
+                console.log('my-title 组件创建了')
+            },
+            mounted() {
+                console.log('my-title 组件挂载完成')
+            },
+            beforeUpdate() {
+                console.log('my-title 组件开始更新')
+            },
+            updated() {
+                console.log('my-title 组件更新了')
+            },
+            unmounted(){
+                console.log('my-title 组件卸载了')
+            }
+        });
+        const vm = app.mount('#app');  // 根组件  
+    </script>
+
+</body>
+
+</html>

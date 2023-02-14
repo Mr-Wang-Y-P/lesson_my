@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<script>
+// 具象
+function red() {
+    console.log('red');
+}
+function green() {
+    console.log('green');
+}
+function yellow() {
+    console.log('yellow');
+}
+// callback 
+// 抽象
+var light = function(timer, cb) {
+    // 顺序？ 
+    return new Promise((resolve, reject) => {
+        // console.log('立即执行');
+        setTimeout(() => {
+            cb();
+            resolve()
+        }, timer);
+    })
+}
+//then 链式调用
+// light(3000, red)
+//     .then(()=> light(2000,green))
+//     .then(()=> light(1000,yellow))
+//不停的去做，怎么办？
+//while ， setInterval,递归 函数在内部调用自己，出口的时候
+var step = function(){
+    light(3000, red)
+    .then(()=> light(2000,green))
+    .then(()=> light(1000,yellow))
+    .then(()=> step())
+}
+step();
+</script> 
+</body>
+</html>

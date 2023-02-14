@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue3</title>
+    <script src="https://unpkg.com/vue@next"></script>
+    <style>
+        .msg{
+            color: pink;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 带id的div标签？ 
+    组件化思想 VS  DOM思想  -->
+    <div id="app">
+        <!-- 
+        根节点 挂载 组件     
+        内部使用组件化思想 
+        内部使用数据驱动
+        内部 支持 v-for v-if 指令 
+        DOM 原始 不支持的？   VUE 来支持 -->
+    </div>
+    <script>
+        // App 开发思想
+        // Vue ? 框架 尤雨溪 人写出来   
+        // Vue 原生JS 对象 
+        // 命名空间  汇集到一个点？ 
+        // class  Vue {
+
+        // }
+        // let Vue = (function() {
+        //     let Vue = {}
+        //     return Vue
+        // })()
+        // Vue 就好像三明治 template {{msg}} <my-component/> wx:for
+        //单例模式 ？
+        //根节点
+        //1. 创建一个webapp
+            // Vue.createApp({})
+        //2. 挂载到#app根节点上 .mount('#app')
+            //第一个根组件的开发，方便组件化思想的落地
+        Vue.createApp({
+            // 模板？ html? DOM 
+            // 组件 = 标签+css + js 
+            // wxml   
+            template: '<div class="msg">Hello World!{{counter}}</div>',
+            // js?  
+            data() {
+                return {
+                    counter: 1
+                }
+            },
+            //加载完成时自动触发 生命周期函数
+            //OnLoad(){}
+            mounted() {
+                console.log('页面加载完成后，自动执行')
+            },
+        }).mount('#app') // 挂载点上
+    </script>
+</body>
+
+</html>

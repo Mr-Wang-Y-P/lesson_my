@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Throttle 节流</title>
+</head>
+
+<body>
+    <div>
+        <label for="unThrottle">没有节流的input
+            <input id="unThrottle" type="text">
+    </div>
+    <div>
+        <label for="debounce">防抖后的input</label>
+        <input id="debounce" type="text">
+    </div>
+    <div>
+        <label for="throttle">节流后的input</label>
+        <input id="throttle" type="text">
+    </div>
+    <script src="https://cdn.bootcdn.net/ajax/libs/lodash.js/4.17.21/lodash.min.js"></script>
+    <script>
+        // 1. 对象是函数
+        // 2. 优化执行的次数
+        // 节流, 1000s间隔时间会执行一次 
+        // now - 上一个执行 > 1000s  执行  
+        function ajax(content) {
+            console.log('ajax request ' + content); // 开销很大
+        }
+        // 1. 函数嵌套函数
+        function throttle(func, delay) {
+            // 闭包空间  自由变量
+            let last, // 记录最后一次func 执行的时间
+                deferTimer; // 定时器的id 
+            // 2. 内层函数要可以在外部调用  return  
+            return function (...args) {
+                let that = this; // 缓存一下 throttleAjax  运行时的this
+                // console.log(this, that);
+                // this 丢失? 
+                // 时间戳  1970 
+                // 隐式类型转换
+                // 日期类型  [Object Date] ->  整数类型
+                let now = +new Date();
+                // 已经执行过, 最后的执行
+                if (last && now < last + delay) {
+                    clearTimeout(deferTimer);
+                    deferTimer = setTimeout(function () {
+                        last = now
+                        func.apply(that, args);
+                    }, delay);
+                } else {
+                    // 先执行这里
+                    // 一进来先运行 
+                    last = now
+                    func.apply(that, args)
+                }
+            }
+        }
+        let inputc = document.getElementById('throttle')
+        let inputb = document.getElementById('debounce')
+        // let throttleAjax = throttle(ajax, 1000)
+        console.log(_);
+        let throttleAjax = _.throttle(ajax, 1000);
+        let debounceAjax = _.debounce(ajax, 1000);
+        inputc.addEventListener('keyup', function (e) {
+            // 3. 运行的时候可以访问到它生成时候的上下文中的自由变量
+            throttleAjax(e.target.value)
+            // throttleAjax.call(this, e.target.value)
+        })
+        inputb.addEventListener('keyup', function (e) {
+            // 3. 运行的时候可以访问到它生成时候的上下文中的自由变量
+            debounceAjax(e.target.value) // window 
+            // throttleAjax.call(this, e.target.value)
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>thenable</title>
+</head>
+
+<body>
+    <p id="msg">当前没有数据</p>
+    <ul id="list">
+
+    </ul>
+    <script>
+        // 有一个异步任务 耗时，再做某件事情，thenable
+        (function () {
+            const list = document.querySelector('#list')
+            const post = JSON.parse(localStorage.getItem('post')) || []
+            // 先取数据
+            // 添加到ul
+            if (post.length == 0) {
+                fetch('http://localhost:3000/post')
+                    // .then(()=>{
+                    //     //等待一个异步任务
+                    //     // console.log(1)
+                    // })
+                    //二进制流
+
+                    .then(res => res.json())
+                    //花时间 类型转换
+                    .then(res => {
+                        localStorage.setItem('post', JSON.stringify(res));
+                        res.forEach(item => {
+                            list.innerHTML += `
+                        <li>
+                            ${item.title}    
+                        </li>
+                        `
+                        })
+                        document.getElementById('msg').style.display = 'none';
+                        // console.log(res);
+                        //数据就来了
+                    })
+                console.log(2);
+                list.innerHTML += `
+            <li>
+                文章一篇
+            </li>
+            `;//同步
+            }
+            else {
+               rendPosts(post)
+            }
+        })
+        function rendPosts(items){
+            items.forEach(item => {
+                    list.innerHTML += `
+                        <li>
+                            ${item.title}    
+                        </li>
+                        `
+                })
+                document.getElementById('msg').style.display = 'none';
+        }
+        //     fetch('http://localhost:3000/post')
+        //         // .then(()=>{
+        //         //     //等待一个异步任务
+        //         //     // console.log(1)
+        //         // })
+        //         //二进制流
+
+        //         .then(res => res.json())
+        //         //花时间 类型转换
+        //         .then(res => {
+        //             res.forEach(item=>{
+        //                 list.innerHTML+=`
+        //                 <li>
+        //                     ${item.title}
+        //                 </li>
+        //                 `
+        //             })
+        //             document.getElementById('msg').style.display='none';
+        //             // console.log(res);
+        //             //数据就来了
+        //         })
+        //     console.log(2);
+        //     list.innerHTML += `
+        //     <li>
+        //         文章一篇
+        //     </li>
+        //     `;//同步
+
+        // })()
+    </script>
+</body>
+
+</html>

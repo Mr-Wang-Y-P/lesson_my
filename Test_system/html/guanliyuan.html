@@ -1,0 +1,1080 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/popper.js/1.15.0/umd/popper.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!-- <script src="../vuejs/vue.js"></script> -->
+    <title>管理信息</title>
+    <style>
+        .bg {
+            background: url(https://ts1.cn.mm.bing.net/th/id/R-C.d742d8f3173ff51cf523862a91073913?rik=fdr5bwZnFTOeMg&riu=http%3a%2f%2fimg.zcool.cn%2fcommunity%2f01cd34574405ce6ac725550b683178.gif&ehk=Wu%2bjfO43ihXGArM2AQ7F5P3Jh1ClnvuIwrjEAbOywcQ%3d&risl=&pid=ImgRaw&r=0);
+            background-repeat: no-repeat;
+            background-size: 100%;
+        }
+    </style>
+</head>
+
+<body onload="display()" class="container bg">
+    <div id="app">
+        <div id="display1" style="display:none;">
+            <nav class="navbar navbar-light bg-dark fixed-top  navbar-expand-md">
+                <a class="navbar-brand text-primary " href="#" id="qiehuan">教学质量网络测评系统</a>
+                <button class="navbar-toggler disabled" data-target="#colla" data-toggle="collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="colla">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link " href="#" id="a1"><img style="width: 30px;height: 30px;"
+                                    src="https://s1.aigei.com/src/img/png/b1/b1c74d29430d4e948a831738fd53684d.png?imageMogr2/auto-orient/thumbnail/!234x234r/gravity/Center/crop/234x234/quality/85/&e=1735488000&token=P7S2Xpzfz11vAkASLTkfHN7Fw-oOZBecqeJaxypL:cvW8k9shKFcz3bruD7ZV8d0iOaA="
+                                    alt=""> 已登录</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" id="a2">学生信息管理</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link " href="#" id="a3">教师信息管理</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">教学质量网络测评信息</a>
+
+                            <div class="dropdown-menu">
+                                <div class="dropdown-item">
+                                    <a href="#" id="a4">添加信息</a>
+                                </div>
+                                <div class="dropdown-item">
+                                    <a href="#" id="a5">查询信息</a>
+                                </div>
+                                <div class="dropdown-item">
+                                    <a href="#" id="a6">更新信息</a>
+                                </div>
+                                <div class="dropdown-item">
+                                    <a href="#" id="a7">删除信息</a>
+                                </div>
+                                <div class="dropdown-item">
+                                    <a href="#" id="a8">信息统计</a>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <div id="display2" style="display:none;margin-top: 50px;" onclick="">
+            <div class="mt-5">
+                <button v-on:click="showBox=true" class="mt-5 btn btn-primary">添加</button>
+                <div class="mt-4">
+                    <input type="text" class="form-control" v-model="searchStr" placeholder="请输入搜索内容">
+                </div>
+                <table class="table table-bordered mt-5 table-success container text-center">
+                    <thead>
+                        <tr>
+                            <th>学号</th>
+                            <th>姓名</th>
+                            <th>学院</th>
+                            <th>任课老师</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="(item,index) in results" :key="index">
+                            <td>{{item.Sno}}</td>
+                            <td>{{item.STUname}}</td>
+                            <td>{{item.xueyuan}}</td>
+                            <td>{{item.Teacher}}</td>
+                            <td>
+                                <button v-on:click="getOne(index)" class="btn btn-primary">修改</button>
+                                <button v-on:click="del(index)" class="btn btn-primary">删除</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div v-show="showBox" class="w-50 mx-auto">
+                    <div v-on:click="close" class="close">X</div>
+                    <table class="table table-success">
+                        <tr>
+                            <td>学号：</td>
+                            <td><input type="text" v-model="Sno"></td>
+                        </tr>
+                        <tr>
+                            <td>姓名：</td>
+                            <td><input type="text" v-model="STUname"></td>
+                        </tr>
+                        <tr>
+                            <td>学院：</td>
+                            <td><input type="text" v-model="xueyuan"></td>
+                        </tr>
+                        <tr>
+                            <td>任课老师</td>
+                            <td><input type="text" v-model="Teacher"></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>
+                                <!-- isAdd返回true，显示添加按钮，否则显示修改按钮 -->
+                                <button v-if="isAdd" v-on:click="add()" class="btn btn-primary">添加</button>
+                                <button v-else v-on:click="update()" class="btn btn-primary ">修改</button>
+                                <button v-on:click="cancel()" class="btn btn-primary">取消</button>
+                            </td>
+                        </tr>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div id="display3" style="display:none;">
+
+            <div class="mt-5">
+                <button v-on:click="showBox=true" class="mt-5 btn btn-primary">添加</button>
+                <div class="mt-4">
+                    <input type="text" class="form-control" v-model="searchStr1" placeholder="请输入搜索内容">
+                </div>
+                <table class="table table-bordered mt-5 table-success container text-center">
+                    <thead>
+                        <tr>
+                            <th>教师编号</th>
+                            <th>姓名</th>
+                            <th>学院</th>
+                            <th>课程编号</th>
+                            <th>课程名称</th>
+                            <th>上课学期</th>
+                            <th>备注</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="(item,index) in results1" :key="index">
+                            <td>{{item.Tno}}</td>
+                            <td>{{item.Tname}}</td>
+                            <td>{{item.Txueyuan}}</td>
+                            <td>{{item.TCO}}</td>
+                            <td>{{item.Cname}}</td>
+                            <td>{{item.TIME}}</td>
+                            <td>{{item.TB}}</td>
+                            <td>
+                                <button v-on:click="getOne1(index)" class="btn btn-primary">修改</button>
+                                <button v-on:click="del1(index)" class="btn btn-primary">删除</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div v-show="showBox" class="w-50 mx-auto">
+                    <div v-on:click="close1" class="close">X</div>
+                    <table class="table table-success">
+                        <tr>
+                            <td>教师编号：</td>
+                            <td><input type="text" v-model="Tno"></td>
+                        </tr>
+                        <tr>
+                            <td>姓名：</td>
+                            <td><input type="text" v-model="Tname"></td>
+                        </tr>
+                        <tr>
+                            <td>所属学院</td>
+                            </td>
+                            <td><input type="text" v-model="Txueyuan"></td>
+                        </tr>
+                        <tr>
+                            <td>课程编号</td>
+                            <td><input type="text" v-model="TCO"></td>
+                        </tr>
+                        <tr>
+                            <td>课程名字</td>
+                            <td><input type="text" v-model="Cname"></td>
+                        </tr>
+                        <tr>
+                            <td>上课学期</td>
+                            <td><input type="text" v-model="TIME"></td>
+                        </tr>
+                        <tr>
+                            <td>备注</td>
+                            <td><input type="text" v-model="TB"></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>
+                                <!-- isAdd返回true，显示添加按钮，否则显示修改按钮 -->
+                                <button v-if="isAdd" v-on:click="add1()" class="btn btn-primary">添加</button>
+                                <button v-else v-on:click="update1()" class="btn btn-primary ">修改</button>
+                                <button v-on:click="cancel1()" class="btn btn-primary">取消</button>
+                            </td>
+                        </tr>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div id="display4" style="display:none;">
+            <div class="mt-5">
+                <button v-on:click="showBox=true" class="mt-5 btn btn-primary">添加</button>
+                <table class="table table-bordered mt-5 table-success container text-center">
+                    <thead>
+                        <tr>
+                            <th>评测内容编号</th>
+                            <th>评测内容</th>
+                            <th>评测人编号</th>
+                            <th>评测人</th>
+                            <th>评测分数</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="(item,index) in Test" :key="index">
+                            <td>{{item.No}}</td>
+                            <td>{{item.text}}</td>
+                            <td>{{item.Pno}}</td>
+                            <td>{{item.Pname}}</td>
+                            <td>{{item.score}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div v-show="showBox" class="w-50 mx-auto">
+                    <div v-on:click="close2" class="close">X</div>
+                    <table class="table table-success">
+                        <tr>
+                            <td>评测内容编号</td>
+                            <td><input type="text" v-model="No"></td>
+                        </tr>
+                        <tr>
+                            <td>评测内容</td>
+                            <td><input type="text" v-model="text"></td>
+                        </tr>
+                        <tr>
+                            <td>评测人编号</td>
+                            </td>
+                            <td><input type="text" v-model="Pno"></td>
+                        </tr>
+                        <tr>
+                            <td>评测人</td>
+                            <td><input type="text" v-model="Pname"></td>
+                        </tr>
+                        <tr>
+                            <td>评测分数</td>
+                            <td><input type="text" v-model="score"></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>
+                                <!-- isAdd返回true，显示添加按钮，否则显示修改按钮 -->
+                                <button v-on:click="add2()" class="btn btn-primary mx-auto">添加</button>
+                                <button v-on:click="cancel2()" class="btn btn-primary">取消</button>
+                            </td>
+                        </tr>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div id="display5" style="display:none;">
+            <div class="mt-5">
+                <div class="mt-5">
+                    <input type="text" v-model="searchStr2" placeholder="请输入搜索内容" class="mt-5">
+                </div>
+                <div>
+                    <table class="table table-bordered mt-5 table-success container text-center">
+                        <thead>
+                            <tr>
+                                <th>评测内容编号</th>
+                                <th>评测内容</th>
+                                <th>评测人编号</th>
+                                <th>评测人</th>
+                                <th>评测分数</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="item in results2">
+                                <td>{{item.No}}</td>
+                                <td>{{item.text}}</td>
+                                <td>{{item.Pno}}</td>
+                                <td>{{item.Pname}}</td>
+                                <td>{{item.score}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+        <div id="display6" style="display:none;">
+            <div class="mt-5">
+                <br>
+                <br>
+                <br>
+                <table class="table table-bordered mt-5 table-success container text-center">
+                    <thead>
+                        <tr>
+                            <th>评测内容编号</th>
+                            <th>评测内容</th>
+                            <th>评测人编号</th>
+                            <th>评测人</th>
+                            <th>评测分数</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="(item,index) in Test" :key="index">
+                            <td>{{item.No}}</td>
+                            <td>{{item.text}}</td>
+                            <td>{{item.Pno}}</td>
+                            <td>{{item.Pname}}</td>
+                            <td>{{item.score}}</td>
+                            <td>
+                                <button v-on:click="getOne2(index)" class="btn btn-primary">修改</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div v-show="showBox" class="w-50 mx-auto">
+                    <div v-on:click="close2" class="close">X</div>
+                    <table class="table table-success">
+                        <tr>
+                            <td>评测内容编号</td>
+                            <td><input type="text" v-model="No"></td>
+                        </tr>
+                        <tr>
+                            <td>评测内容</td>
+                            <td><input type="text" v-model="text"></td>
+                        </tr>
+                        <tr>
+                            <td>评测人编号</td>
+                            </td>
+                            <td><input type="text" v-model="Pno"></td>
+                        </tr>
+                        <tr>
+                            <td>评测人</td>
+                            <td><input type="text" v-model="Pname"></td>
+                        </tr>
+                        <tr>
+                            <td>评测分数</td>
+                            <td><input type="text" v-model="score"></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>
+                                <!-- isAdd返回true，显示添加按钮，否则显示修改按钮 -->
+                                <button v-on:click="update2()" class="btn btn-primary mx-auto">修改</button>
+                                <button v-on:click="cancel2()" class="btn btn-primary">取消</button>
+                            </td>
+                        </tr>
+
+                    </table>
+                </div>
+            </div>
+
+        </div>
+        <div id="display7" style="display:none;">
+            <div class="mt-5">
+                <br>
+                <br>
+                <br>
+                <table class="table table-bordered mt-5 table-success container text-center">
+                    <thead>
+                        <tr>
+                            <th>评测内容编号</th>
+                            <th>评测内容</th>
+                            <th>评测人编号</th>
+                            <th>评测人</th>
+                            <th>评测分数</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="(item,index) in Test" :key="index">
+                            <td>{{item.No}}</td>
+                            <td>{{item.text}}</td>
+                            <td>{{item.Pno}}</td>
+                            <td>{{item.Pname}}</td>
+                            <td>{{item.score}}</td>
+                            <td>
+                                <button v-on:click="del2(index)" class="btn btn-primary">删除</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+
+        </div>
+        <div id="display8" style="display:none;">
+            <div style="margin-top:120px ;">
+
+                <div class="mt-5">
+                    <table class="table table-bordered  table-success container text-center">
+                        <thead>
+                            <tr>
+                                <th>评测内容编号</th>
+                                <th>评测内容</th>
+                                <th>评测人编号</th>
+                                <th>评测人</th>
+                                <th>评测分数</th>
+                                <th>是否评测</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="item in Test">
+                                <td>{{item.No}}</td>
+                                <td>{{item.text}}</td>
+                                <td>{{item.Pno}}</td>
+                                <td>{{item.Pname}}</td>
+                                <td>{{item.score}}</td>
+                                <td>{{`已评测`}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+        <div id="display9" style="display:none;">
+
+            <div class="" id="">
+                <ul class="nav nav-tabs nav-fill bg-dark">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link" id="qiehuan1">切换登录</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="denglu.html" id="A1"><img style="width: 30px;height: 30px;"
+                                src="https://s1.aigei.com/src/img/png/b1/b1c74d29430d4e948a831738fd53684d.png?imageMogr2/auto-orient/thumbnail/!234x234r/gravity/Center/crop/234x234/quality/85/&e=1735488000&token=P7S2Xpzfz11vAkASLTkfHN7Fw-oOZBecqeJaxypL:cvW8k9shKFcz3bruD7ZV8d0iOaA="
+                                alt=""> 已登录</a>
+                    </li>
+
+                    <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#" id="A2">教师信息查询</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#" id="A3">教学质量测评信息查询</a></li>
+                    <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#" id="A4">教学质量测评信息更新</a></li>
+                </ul>
+
+                <div class="tab-content">
+                    <div class="tab-pane" contenteditable="true" id="panel1" style="display:none;">
+
+                        <div>
+                            <div class="mt-4">
+                                <input type="text" v-model="searchStr1" placeholder="请输入搜索内容">
+                            </div>
+                            <div>
+                                <table class="table table-bordered mt-5 table-success container text-center">
+                                    <thead>
+                                        <tr>
+                                            <th>教师编号</th>
+                                            <th>姓名</th>
+                                            <th>学院</th>
+                                            <th>课程编号</th>
+                                            <th>课程名称</th>
+                                            <th>上课学期</th>
+                                            <th>备注</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr v-for="item in results1">
+                                            <td>{{item.Tno}}</td>
+                                            <td>{{item.Tname}}</td>
+                                            <td>{{item.Txueyuan}}</td>
+                                            <td>{{item.TCO}}</td>
+                                            <td>{{item.Cname}}</td>
+                                            <td>{{item.TIME}}</td>
+                                            <td>{{item.TB}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane" contenteditable="true" id="panel2" style="display:none;">
+                        <div>
+                            <div>
+                                <input type="text" v-model="searchStr2" placeholder="请输入搜索内容" class="mt-5">
+                            </div>
+                            <div>
+                                <table class="table table-bordered mt-5 table-success container text-center">
+                                    <thead>
+                                        <tr>
+                                            <th>评测内容编号</th>
+                                            <th>评测内容</th>
+                                            <th>评测人编号</th>
+                                            <th>评测人</th>
+                                            <th>评测分数</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr v-for="item in results2">
+                                            <td>{{item.No}}</td>
+                                            <td>{{item.text}}</td>
+                                            <td>{{item.Pno}}</td>
+                                            <td>{{item.Pname}}</td>
+                                            <td>{{item.score}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane" contenteditable="true" id="panel3" style="display:none;">
+                        <div class="mt-5">
+                            <br>
+                            <br>
+                            <br>
+                            <table class="table table-bordered mt-5 table-success container text-center">
+                                <thead>
+                                    <tr>
+                                        <th>评测内容编号</th>
+                                        <th>评测内容</th>
+                                        <th>评测人编号</th>
+                                        <th>评测人</th>
+                                        <th>评测分数</th>
+                                        <th>操作</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr v-for="(item,index) in Test" :key="index">
+                                        <td>{{item.No}}</td>
+                                        <td>{{item.text}}</td>
+                                        <td>{{item.Pno}}</td>
+                                        <td>{{item.Pname}}</td>
+                                        <td>{{item.score}}</td>
+                                        <td>
+                                            <button v-on:click="getOne2(index)" class="btn btn-primary">修改</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div v-show="showBox" class="w-50 mx-auto">
+                                <div v-on:click="close2" class="close">X</div>
+                                <table class="table table-success">
+                                    <tr>
+                                        <td>评测内容编号</td>
+                                        <td><input type="text" v-model="No"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>评测内容</td>
+                                        <td><input type="text" v-model="text"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>评测人编号</td>
+                                        </td>
+                                        <td><input type="text" v-model="Pno"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>评测人</td>
+                                        <td><input type="text" v-model="Pname"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>评测分数</td>
+                                        <td><input type="text" v-model="score"></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>
+                                            <!-- isAdd返回true，显示添加按钮，否则显示修改按钮 -->
+                                            <button v-on:click="update2()" class="btn btn-primary mx-auto">修改</button>
+                                            <button v-on:click="cancel()" class="btn btn-primary">取消</button>
+                                        </td>
+                                    </tr>
+
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+
+        function display() {
+            var a = localStorage.getItem("option");
+            var display1 = document.getElementById('display1');
+            var display9 = document.getElementById("display9");
+            console.log(a);
+            if (a === 'admin') {
+                display1.style.display = "block";
+            }
+            if (a === 'student') {
+                display9.style.display = 'block'
+            }
+        }
+
+        Vue.config.devtools = false
+        Vue.config.productionTip = false
+        new Vue({
+            el: "#app",
+            data: {
+
+                isAdd: true,
+                showBox: false,
+                // 用于备份修改时，数组中对应的下标
+                updateIndex: 0,
+                updateIndex1: 0,
+                updateIndex2: 0,
+                Sno: '',
+                STUname: '',
+                xueyuan: '',
+                Teacher: '',
+                searchStr: '',//搜索关键字
+                students: [{
+                    Sno: '202011',
+                    STUname: '李丽',
+                    xueyuan: '软件学院',
+                    Teacher: '王鹏',
+                },
+                {
+                    Sno: '202015',
+                    STUname: '黄蓉',
+                    xueyuan: '软件学院',
+                    Teacher: '王飞',
+
+                }],
+                searchStr1: '',//搜索关键字
+                Tno: '',
+                Tname: '',
+                Txueyuan: '',
+                TCO: '',
+                Cname: '',
+                TIME: '',
+                TB: '',
+                Teachers: [{//
+                    Tno: '201911',
+                    Tname: '王鹏',
+                    Txueyuan: '软件学院',
+                    TCO: 'C1',
+                    Cname: '软件工程',
+                    TIME: '2021上',
+                    TB: '院长',
+                }, {
+                    Tno: '202113',
+                    Tname: '张三',
+                    Txueyuan: '信工学院',
+                    TCO: 'C2',
+                    Cname: '体系结构',
+                    TIME: '2021下',
+                    TB: '辅导员',
+                }],
+                searchStr2: '',//搜索关键字
+                No: "",
+                text: "",
+                Pno: "",
+                Pname: "",
+                score: '',
+                Test: [{
+                    No: "a12",
+                    text: "课程质量",
+                    Pno: "202015",
+                    Pname: "黄蓉",
+                    score: '90'
+                },
+                {
+                    No: "a15",
+                    text: "教师质量",
+                    Pno: "202018",
+                    Pname: "李丽",
+                    score: '92'
+                }]
+            },
+
+            methods: {
+                add() {
+                    let stu = {
+                        Sno: this.Sno,
+                        STUname: this.STUname,
+                        xueyuan: this.xueyuan,
+                        Teacher: this.Teacher,
+                    }
+                    this.students.push(stu)
+                },
+                cancel() {
+
+                    this.Sno = '',
+                        this.STUname = '',
+                        this.xueyuan = '',
+                        this.Teacher = '',
+                        this.showBox = false;
+                },
+                getOne(index) {
+                    // 备份当前需要修改的学生对象，在数组中的下标
+                    this.updateIndex = index;
+                    // 根据数组下标，获取指定对象，赋值给stu2
+                    let stu2 = this.students[index];
+                    // 将该用户对象身上的四个属性的值传给当前vue实例身上的四个属性
+                    this.Sno = stu2.Sno;
+                    this.STUname = stu2.STUname;
+                    this.xueyuan = stu2.xueyuan;
+                    this.Teacher = stu2.Teacher;
+                    // 显示编辑框
+                    this.showBox = true;
+                    // 表示此时做的是修改操作
+                    this.isAdd = false;
+                },
+                // 修改用户信息
+                update() {
+                    // 获取数组中对应下标的学生对象
+                    let stu3 = this.students[this.updateIndex];
+                    stu3.Sno = this.Sno;
+                    stu3.STUname = this.STUname;
+                    stu3.xueyuan = this.xueyuan;
+                    stu3.Teacher = this.Teacher;
+                },
+                // 删除学生
+                del(index) {
+                    if (confirm('确定删除吗？')) {
+                        this.students.splice(index, 1)
+                    }
+                },
+                // 关闭编辑窗口的方法
+                close() {
+                    // 隐藏编辑窗口
+                    this.showBox = false;
+                    // 显示添加按钮，隐藏修改按钮
+                    this.isAdd = true;
+                    // 清空数据
+                   this.cancel()
+                   
+                },
+                add1() {
+                    let Tea = {
+                        Tno: this.Tno,
+                        Tname: this.Tname,
+                        Txueyuan: this.Txueyuan,
+                        TCO: this.TCO,
+                        Cname: this.Cname,
+                        TIME: this.TIME,
+                        TB: this.TB,
+
+                    }
+                    this.Teachers.push(Tea)
+                },
+                cancel1() {
+                    this.Tno = '',
+                        this.Tname = '',
+                        this.Txueyuan = '',
+                        this.TCO = '',
+                        this.Cname = '',
+                        this.TIME = '',
+                        this.TB = '',
+                        this.showBox = false;
+                },
+                getOne1(index) {
+                    // 备份当前需要修改的学生对象，在数组中的下标
+                    this.updateIndex1 = index;
+                    // 根据数组下标，获取指定对象，赋值给stu2
+                    let Tea2 = this.Teachers[index];
+                    // 将该用户对象身上的四个属性的值传给当前vue实例身上的四个属性
+                    this.Tno = Tea2.Tno;
+                    this.Tname = Tea2.Tname;
+                    this.Txueyuan = Tea2.Txueyuan;
+                    this.TCO = Tea2.TCO;
+                    this.Cname = Tea2.Cname;
+                    this.TIME = Tea2.TIME;
+                    this.TB = Tea2.TB;
+                    // 显示编辑框
+                    this.showBox = true;
+                    // 表示此时做的是修改操作
+                    this.isAdd = false;
+                },
+                // 修改用户信息
+                update1() {
+                    // 获取数组中对应下标的学生对象
+                    let Tea3 = this.Teachers[this.updateIndex1];
+                    Tea3.Tno = this.Tno;
+                    Tea3.Tname = this.Tname;
+                    Tea3.Txueyuan = this.Txueyuan;
+                    Tea3.TCO = this.TCO;
+                    Tea3.Cname = this.Cname;
+                    Tea3.TIME = this.TIME;
+                    Tea3.TB = this.TB;
+                },
+                // 删除学生
+                del1(index) {
+                    if (confirm('确定删除吗？')) {
+                        this.Teachers.splice(index, 1)
+                    }
+                },
+                close1() {
+                    // 隐藏编辑窗口
+                    this.showBox = false;
+                    // 显示添加按钮，隐藏修改按钮
+                    this.isAdd = true;
+                    // 清空数据
+                   this.cancel1()
+                   
+                },
+                add2() {
+                    let test = {
+                        No: this.No,
+                        text: this.text,
+                        Pno: this.Pno,
+                        Pname: this.Pname,
+                        score: this.score,
+                    }
+                    this.Test.push(test)
+                },
+                cancel2() {
+                    this.No = "";
+                    this.text = "";
+                    this.Pno = "";
+                    this.Pname = "";
+                    this.score = "";
+                    this.showBox = false;
+                },
+                getOne2(index) {
+                    // 备份当前需要修改的学生对象，在数组中的下标
+                    this.updateIndex2 = index;
+                    // 根据数组下标，获取指定对象，赋值给stu2
+                    let Test2 = this.Test[index];
+                    // 将该用户对象身上的四个属性的值传给当前vue实例身上的四个属性
+                    this.No = Test2.No;
+                    this.text = Test2.text;
+                    this.Pno = Test2.Pno;
+                    this.Pname = Test2.Pname;
+                    this.score = Test2.score;
+                    // 显示编辑框
+                    this.showBox = true;
+                    // 表示此时做的是修改操作
+                    this.isAdd = false;
+                },
+                // 修改用户信息
+                update2() {
+                    // 获取数组中对应下标的学生对象
+                    let Test3 = this.Test[this.updateIndex2];
+                    Test3.No = this.No;
+                    Test3.text = this.text;
+                    Test3.Pno = this.Pno;
+                    Test3.Pname = this.Pname;
+                    Test3.score = this.score;
+                },
+                // 删除学生
+                del2(index) {
+                    if (confirm('确定删除吗？')) {
+                        this.Test.splice(index, 1)
+                    }
+                },
+                close2() {
+                    // 隐藏编辑窗口
+                    this.showBox = false;
+                    // 显示添加按钮，隐藏修改按钮
+                    this.isAdd = true;
+                    // 清空数据
+                   this.cancel2()
+                   
+                },
+            },
+            computed: {
+                results1: function () {
+                    var Teachers = this.Teachers;
+                    if (this.searchStr1 == '') {
+                        return Teachers;
+                    }
+                    var searchStr1 = this.searchStr1.trim().toLowerCase();//去除空格转换为小写
+                    Teachers = Teachers.filter(function (ele) {
+
+                        if (ele.Tno.toLowerCase().indexOf(searchStr1) != -1) {
+                            return ele;
+                        }
+                        if (ele.Tname.toLowerCase().indexOf(searchStr1) != -1) {
+                            return ele;
+                        }
+                        if (ele.Txueyuan.toLowerCase().indexOf(searchStr1) != -1) {
+                            return ele;
+                        }
+                        if (ele.TCO.toLowerCase().indexOf(searchStr1) != -1) {
+                            return ele;
+                        }
+                    });
+                    return Teachers;
+                },
+                results: function () {
+                    var students = this.students;
+                    if (this.searchStr == '') {
+                        return students;
+                    }
+                    var searchStr = this.searchStr.trim().toLowerCase();//去除空格转换为小写
+                    students = students.filter(function (ele) {
+
+                        if (ele.Sno.toLowerCase().indexOf(searchStr) != -1) {
+                            return ele;
+                        }
+                        if (ele.STUname.toLowerCase().indexOf(searchStr) != -1) {
+                            return ele;
+                        }
+                        if (ele.xueyuan.toLowerCase().indexOf(searchStr) != -1) {
+                            return ele;
+                        }
+                        if (ele.Teacher.toLowerCase().indexOf(searchStr) != -1) {
+                            return ele;
+                        }
+                    });
+                    return students;
+                },
+                results2: function () {
+                    var Test = this.Test;
+                    if (this.searchStr2 == '') {
+                        return Test;
+                    }
+                    var searchStr2 = this.searchStr2.trim().toLowerCase();//去除空格转换为小写
+                    Test = Test.filter(function (ele) {
+
+                        if (ele.No.toLowerCase().indexOf(searchStr2) != -1) {
+                            return ele;
+                        }
+                        if (ele.text.toLowerCase().indexOf(searchStr2) != -1) {
+                            return ele;
+                        }
+                        if (ele.Pno.toLowerCase().indexOf(searchStr2) != -1) {
+                            return ele;
+                        }
+                        if (ele.Pname.toLowerCase().indexOf(searchStr2) != -1) {
+                            return ele;
+                        }
+                        if (ele.score.toLowerCase().indexOf(searchStr2) != -1) {
+                            return ele;
+                        }
+                    });
+                    return Test;
+                }
+            }
+        })
+
+
+        qiehuan.onclick = function (e) {
+            display1.style.display = 'none';
+            display2.style.display = 'none';
+            display3.style.display = 'none';
+            display4.style.display = 'none';
+            display5.style.display = 'none';
+            display6.style.display = 'none';
+            display7.style.display = 'none';
+            display8.style.display = 'none';
+            display9.style.display = 'block';
+        }
+        qiehuan1.onclick = function (e) {
+            display1.style.display = 'block';
+            display2.style.display = 'none';
+            display3.style.display = 'none';
+            display4.style.display = 'none';
+            display5.style.display = 'none';
+            display6.style.display = 'none';
+            display7.style.display = 'none';
+            display8.style.display = 'none';
+            display9.style.display = 'none';
+        }
+        a1.onclick = function (e) {
+            display1.style.display = 'block';
+            display2.style.display = 'none';
+            display3.style.display = 'none';
+            display4.style.display = 'none';
+            display5.style.display = 'none';
+            display6.style.display = 'none';
+            display7.style.display = 'none';
+            display8.style.display = 'none';
+            display9.style.display = 'none';
+        }
+        a2.onclick = function (e) {
+            display1.style.display = 'block';
+            display2.style.display = 'block';
+            display3.style.display = 'none';
+            display4.style.display = 'none';
+            display5.style.display = 'none';
+            display6.style.display = 'none';
+            display7.style.display = 'none';
+            display8.style.display = 'none';
+            display9.style.display = 'none';
+        }
+        a3.onclick = function (e) {
+
+            display1.style.display = 'block';
+            display2.style.display = 'none';
+            display3.style.display = 'block';
+            display4.style.display = 'none';
+            display5.style.display = 'none';
+            display6.style.display = 'none';
+            display7.style.display = 'none';
+            display8.style.display = 'none';
+            display9.style.display = 'none';
+
+        }
+        a4.onclick = function (e) {
+            display1.style.display = 'block';
+            display2.style.display = 'none';
+            display3.style.display = 'none';
+            display4.style.display = 'block';
+            display5.style.display = 'none';
+            display6.style.display = 'none';
+            display7.style.display = 'none';
+            display8.style.display = 'none';
+            display9.style.display = 'none';
+        }
+        a5.onclick = function (e) {
+            display1.style.display = 'block';
+            display2.style.display = 'none';
+            display3.style.display = 'none';
+            display4.style.display = 'none';
+            display5.style.display = 'block';
+            display6.style.display = 'none';
+            display7.style.display = 'none';
+            display8.style.display = 'none';
+            display9.style.display = 'none';
+        }
+        a6.onclick = function (e) {
+            display1.style.display = 'block';
+            display2.style.display = 'none';
+            display3.style.display = 'none';
+            display4.style.display = 'none';
+            display5.style.display = 'none';
+            display6.style.display = 'block';
+            display7.style.display = 'none';
+            display8.style.display = 'none';
+            display9.style.display = 'none';
+        }
+        a7.onclick = function (e) {
+            display1.style.display = 'block';
+            display2.style.display = 'none';
+            display3.style.display = 'none';
+            display4.style.display = 'none';
+            display5.style.display = 'none';
+            display6.style.display = 'none';
+            display7.style.display = 'block';
+            display8.style.display = 'none';
+            display9.style.display = 'none';
+        }
+        a8.onclick = function (e) {
+            display1.style.display = 'block';
+            display2.style.display = 'none';
+            display3.style.display = 'none';
+            display4.style.display = 'none';
+            display5.style.display = 'none';
+            display6.style.display = 'none';
+            display7.style.display = 'none';
+            display8.style.display = 'block';
+            display9.style.display = 'none';
+        }
+        A2.onclick = function (e) {
+            display9.style.display = 'block';
+            panel1.style.display = "block";
+            panel2.style.display = "none";
+            panel3.style.display = "none";
+        }
+        A3.onclick = function (e) {
+            display9.style.display = 'block';
+            panel1.style.display = "none";
+            panel2.style.display = "block";
+            panel3.style.display = "none";
+        }
+        A4.onclick = function (e) {
+            display9.style.display = 'block';
+            panel1.style.display = "none";
+            panel2.style.display = "none";
+            panel3.style.display = "block";
+        }
+    </script>
+
+</body>
+
+</html>

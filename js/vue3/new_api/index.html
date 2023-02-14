@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+<body>
+    <div id="app">
+        <h1 @click="add">{{state.count}}*2={{double}}</h1>
+    </div>
+    <script>
+        const {reactive,computed } =Vue
+        let App={
+            //用全新的组合机制，来完成组件的编写
+            //vue2 机械式的组合规定变成更灵活的组合机制
+            //todos addTodo  done...  跨越规定放在一起，可读性更好
+            setup() {//vue3 全新语法 
+                //count 相关业务的状态数据，方法和计算属性的组合
+                const state=reactive({
+                    count:1
+                })
+                function add(){
+                    state.count++;
+                }
+                const double=computed(()=> state.count*2) 
+                //返回值 可以在外界模板直接调用
+                return{
+                    
+                    state,//data 对象
+                    add,//methods
+                    double//computed
+                }
+            }
+        }
+        Vue.createApp(App).mount('#app');
+        
+    </script>
+</body>
+</html>

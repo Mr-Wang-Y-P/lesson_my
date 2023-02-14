@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>浅拷贝</title>
+</head>
+<body>
+<script>
+let o = {
+    hometown: '赣州'
+}
+// Object.create  new 
+let obj = {
+    name: '温总', 
+    age: 18
+}
+obj.__proto__ = o;
+console.log(obj);
+
+// 传一个对象进去，返回一个新的对象， 且 不会引用式赋值新对象
+// 浅拷贝  拷贝一份 
+function clone (source) {
+    var target = {}; // 重新分配了空间..... 
+    for (let key in source) {
+        // console.log(key, source[key]);
+        // 对象自身的属性， 原型对象的属性不要去拷贝
+        if (source.hasOwnProperty(key)) {
+            target[key] = source[key];
+        }
+    }
+    return target;
+}
+const item = clone(obj)
+item.age = 21;
+console.log(obj, item);
+// 解决引用式赋值的问题？
+// // let item = obj; // item obj 指向同一个地址 
+// let item = {  // 内存中申请了一个新的地址， 堆内存
+//     ...obj
+// }
+// item.age = 17;
+// console.log(item, obj);
+// let otherItem =  Object.create(obj) // 原型链的方式
+// console.log(otherItem.name, otherItem.age,  '-----');
+</script>
+</body>
+</html>

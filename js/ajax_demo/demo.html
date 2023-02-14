@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>todos</h1>
+    <ul id="todos">
+    </ul>
+    <br>
+    <input type="text" id="todoInput">
+    <button id="btn">删除</button>
+    <script>
+        //立即运行
+        (function() {
+            //减少全局污染
+            const todosUL = document.querySelector('#todos');
+            const todoInput = document.querySelector('#todoInput');
+            //存储能力
+            const todos = JSON.parse(localStorage.getItem("todos")) || [];
+            // const todos = [{
+            //     text: '买个球针'
+            // }, {
+            //     text: '写小程序'
+            // }]
+            todos.forEach(todo => {
+                todosUL.innerHTML += `
+            <li>${todo.text}</li>
+        `
+            })
+            todoInput.addEventListener('change', function (event) {
+                const val = this.value;
+                if (!val) return;
+                const newTodo = { text: val };
+                todosUL.innerHTML += `
+            <li>${val}</li>
+        `
+                todos.push(newTodo);
+                //保存到本地
+                localStorage.setItem('todos', JSON.stringify(todos))
+            })
+        })()
+
+    </script>
+</body>
+
+</html>

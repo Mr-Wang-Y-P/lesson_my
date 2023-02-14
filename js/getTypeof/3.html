@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="标记 独一无二的">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // const s =Symbol();//函数来申明 BigInt() 一样
+        // console.log(typeof s);//简单数据类型 
+        // const foo = Symbol('foo'); //标签
+        // const bar = Symbol('foo');
+        // console.log(foo === bar)
+        // const s1 =Symbol.for('foo'); //查找 没找到 生成一个
+        // const s2 =Symbol.for('foo');
+        // console.log(s1===s2);
+
+        // const foo =Symbol('foo'); // 申明了一个symbol
+        // const s1=Symbol.for('foo'); // 查找了Symbol
+        // const s2=Symbol.for('foo');
+        // console.log(s1,foo,s1===s2,s1===foo);
+
+        //应用场景
+        const name = Symbol('name');
+        const obj={
+            name:"李四",
+            [name]:'张三',
+            [Symbol()]:"唯一"
+        }
+        console.log(obj);
+        const speak=Symbol('speak');
+        class Person{
+            //公共方法 public
+            say(){
+                console.log('hello')
+            }
+            //private
+            [speak](){
+                console.log('你好')
+            }
+        }
+        const p1 =new Person();
+        p1.say();
+        p1.speak();
+    </script>
+</body>
+</html>

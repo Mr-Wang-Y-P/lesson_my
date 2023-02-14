@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="nav ">
+        <a href="#/page1">page1</a>
+        <a href="#/page2">page2</a>
+        <a href="#/page3">page3</a>
+        <a href="#/page4">page4</a>
+        <a href="#/page5">page5</a>
+    </div>
+    <div id="container">
+
+    </div>
+    <script>
+        // 1. spa webapp 应用形式  mvvm vue
+        class HashRouter {
+            constructor() {
+                //路由管家  key：val
+                this.routers = {}
+                window.addEventListener('hashchange', this.load.bind(this), false)
+            }
+            load() {
+                // console.log(location.hash.slice(1))
+                let hash =location.hash.slice(1),
+                handler;
+                if(!hash){
+                    handler=this.routers.index
+                }else if(!this.routers.hasOwnProperty(hash)){
+                    handler=this.routers['404']
+                }
+                else{
+                    handler=this.routers[hash];
+                }
+                try{
+                    handler.call(this);
+                }catch(err){
+                    (this.routers['error']).call(this,err);
+                } 
+                
+            }
+            register(hash,callback=function(){}){
+                this.routers[hash]=callback;
+            }
+            registerIndex(callback=function(){}){
+                this.routers['index']=callback
+            }
+            registerNotFound(callback=function(){}){
+                this.routers['404']=callback
+            }
+            registerError(callback=function(){}){
+                this.routers['error']=callback
+            }
+        }
+        let router = new HashRouter();
+        let container = document.getElementById('container');
+        router.registerIndex(() => container.innerHTML = '我是首页');
+        router.register('/page1',() => container.innerHTML = '我是page1');
+        router.register('/page2',() => container.innerHTML = '我是page2');
+        router.register('/page3',() => container.innerHTML = '我是page3');
+        router.register('/page5',() => {throw new Error('抛出一个异常')});
+        router.load()
+        router.registerNotFound(() => container.innerHTML = '找不到该页面');
+        router.registerError((e) => container.innerHTML = '页面异常，错误消息<br>'+e.message);
+    </script>
+</body>
+
+</html>

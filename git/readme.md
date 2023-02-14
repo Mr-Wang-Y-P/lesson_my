@@ -1,0 +1,11 @@
+- git init
+- git add readme.md 多次添加到暂存区
+- git commit -m 'reason' 一次性提交
+- git log --oneline 提交记录
+- git reset --hard HEAD^  /git reset --hard id  月光宝盒 返回
+- git status 当前仓库状态
+- git pull origin master 拉下来
+- git push origin master 提交到远程仓库
+- git diff 查看有什么不一样
+- git reflog 查看所有记录
+- git remote add origin https://github.com/Mr-Wang-Y-P/lesson_my.git 

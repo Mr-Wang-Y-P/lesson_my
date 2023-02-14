@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body {
+        margin: 30px;
+        background-color: #E9E9E9;
+    }
+
+    div.polaroid {
+        margin-left: 10%;
+        width: 1000px;
+        padding: 10px 10px 20px 10px;
+        border: 1px solid #BFBFBF;
+        background-color: white;
+        /* Add box-shadow */
+        box-shadow: 2px 2px 3px #aaaaaa;
+    }
+
+    div.rotate_left {
+        float: left;
+        -ms-transform: rotate(7deg);
+        /* IE 9 */
+        -moz-transform: rotate(7deg);
+        /* Firefox */
+        -webkit-transform: rotate(7deg);
+        /* Safari and Chrome */
+        -o-transform: rotate(7deg);
+        /* Opera */
+        transform: rotate(7deg);
+    }
+
+    div.rotate_right {
+        float: left;
+        -ms-transform: rotate(-8deg);
+        /* IE 9 */
+        -moz-transform: rotate(-8deg);
+        /* Firefox */
+        -webkit-transform: rotate(-8deg);
+        /* Safari and Chrome */
+        -o-transform: rotate(-8deg);
+        /* Opera */
+        transform: rotate(-8deg);
+    }
+
+    div.move {
+        transform: translate(110%, -10%);
+    }
+
+    p {
+        font-size: xx-large;
+        color: aqua;
+        font-style: italic;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    }
+</style>
+
+<body>
+    <div class="polaroid">
+        <img src="../../../weapp/practice/images/1.jpg" alt="" width="100%">
+        <p>梅赛德斯 你的梦想</p>
+    </div>
+    <div class="polaroid move">
+        <img src="../../../weapp/practice/images/1.jpg" alt="" width="100%">
+        <p>梅赛德斯 你的梦想</p>
+    </div>
+    <div class="polaroid rotate_left">
+        <img src="../../../weapp/practice/images/1.jpg" alt="" width="100%">
+        <p>梅赛德斯 你的梦想</p>
+    </div>
+    <div class="polaroid rotate_right">
+        <img src="../../../weapp/practice/images/1.jpg" alt="" width="100%">
+        <p>梅赛德斯 男人的信仰</p>
+    </div>
+    <script>
+      
+        var demo = function () {
+            var city = '西安';
+            console.log(`今天${city}雾霾好严重`);
+        }
+        console.log(demo)
+        var demo1 = function demo2() {
+            var city = '西安';
+            console.log(`今天${city}雾霾好严重`);
+        }
+        //demo();//输出今天西安雾霾好严重
+        //demo2();//会报错，因为没有为demo2这个function开辟内存，只有一块内存叫demo
+        console.log(demo1)
+        function test(){
+            var city = '西安';
+            console.log(`今天${city}雾霾好严重`);
+        }
+        console.log(test)
+
+
+       test()
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,73 @@
+/* *index.wxss*
+
+page{
+  position: relative;
+  width: 100vw;/*相对单位 viewport width*/
+  /*height: 100vh;/*相对单位 viewport height*/
+}
+/*
+navigator{
+  margin-top: -100px;
+}
+.container{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  width: 80%;
+  height: 100%;
+  border: 1px solid black;
+  margin: 10px auto;
+  margin-bottom: 15px;
+  overflow: hidden;
+  border-radius: 5px;
+  text-align: center;
+}
+.title1{
+  font-size: 15px;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.title {
+  margin-top: 10px;
+  color:skyblue;
+  font-size: 20px;
+  padding-bottom: 10px;
+}
+.title2{
+  font-size: xx-large;
+  font-weight: bolder;
+}
+.title3{
+  font-size: 12px;
+  color: gray;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+.car{
+  width: 100%;
+  height: 120%;
+  margin-top: 15px;
+}
+button{
+  font-size: 15px;
+  color: gray;
+}
+.bt1{
+  width: 48% !important;
+  float: left;
+}
+
+.bt2{
+  width: 48% !important;
+  float: right;
+}
+button:hover{
+  color: white;
+  background: black;
+}
+.container1{
+  margin-top: 20px;
+  width: 100%;
+} */

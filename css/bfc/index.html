@@ -1,0 +1,72 @@
+<<<<<<< HEAD
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            /* display: flex; */
+            /* display: inline-block; *//*开启新的 BFC */
+            overflow: hidden;/*开启一个新的 BFC 能力*/
+            background: #000;
+        }
+        .box{
+            margin: 100px;
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            float: left;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Body 是最大的BFC -->
+    <div class="container">
+        <!-- 没有开启新的BFC -->
+        <div class="box"></div>
+        <div class="box"></div>
+    </div>
+</body>
+
+=======
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            /* display: flex; */
+            /* display: inline-block; *//*开启新的 BFC */
+            overflow: hidden;/*开启一个新的 BFC 能力*/
+            background: #000;
+        }
+        .box{
+            margin: 100px;
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            float: left;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Body 是最大的BFC -->
+    <div class="container">
+        <!-- 没有开启新的BFC -->
+        <div class="box"></div>
+        <div class="box"></div>
+    </div>
+</body>
+
+>>>>>>> 6bff98b1841e5a61e353c78aec914dfffac9c533
+</html>

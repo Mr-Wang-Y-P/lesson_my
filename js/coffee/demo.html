@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //基类
+        class Beverage {
+            constructor() {
+                console.log('开始冲泡');
+            }
+            boilWater() {
+                console.log('烧水');
+            }
+            //abstract 抽象方法
+            brew() {//空方法 被子类方法覆盖
+              
+
+            };
+            pourInCup() {//空方法
+              
+            }
+            //抽象能力
+            addCondiments() {//空方法
+              
+            }
+        }
+
+
+        class Coffee extends Beverage {
+            constructor() {
+                super();//调用父类的方法
+                this.boilWater();
+                this.brew();
+                this.pourInCup();
+                this.addCondiments();
+            }
+            brew() {
+                console.log('用水冲泡咖啡')
+            }
+            pourInCup() {
+                console.log('咖啡倒入杯子')
+            }
+            addCondiments() {
+                console.log('加糖和奶')
+            }
+        }
+
+
+        class Tea extends Beverage {
+            constructor() {
+                super();//调用父类的方法
+            
+                this.boilWater();
+                this.brew();
+                this.pourInCup();
+                this.addCondiments();
+            }
+            brew() {
+                console.log('用水冲茶')
+            }
+            pourInCup() {
+                console.log('茶倒入杯子')
+            }
+            addCondiments() {
+                console.log('加柠檬')
+            }
+        }
+
+
+
+
+        new Coffee();
+        new Tea();
+        const tea=new Tea();
+        const cof=new Coffee();
+        console.log(cof instanceof Coffee)
+        console.log(cof instanceof Tea)
+        console.log(cof instanceof Beverage)
+        console.log(tea instanceof Tea)
+        console.log(tea instanceof Coffee)
+        console.log(tea instanceof Beverage)
+    </script>
+</body>
+
+</html>

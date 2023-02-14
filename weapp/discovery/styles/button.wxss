@@ -1,0 +1,20 @@
+/* 一个文件一件事 模块化 */
+.button {
+  display: inline-block;
+  margin: 8rpx;
+  background: #e0e1e2;
+  padding: 20rpx 48rpx;
+  font-weight: bold;
+  border-radius: 1px;
+  font-size: 32rpx;
+  transition: 0.3s all;
+}
+
+.button.primary {
+  background: #000;
+  color: rgb(255, 255, 255, 0.9);
+}
+
+.button-hover {
+  opacity: 0.75;
+}

@@ -1,0 +1,26 @@
+<!-- 写页面结构 -->
+<!-- vie相当于div -->
+<view class="container">
+  <navigator url="/pages/detail/detail">
+  <text class="title1">小汪汽车</text>
+  </navigator>
+  
+  <!-- <image class="car" src="{{url}}" alt="梅赛德斯奔驰"/> -->
+  <swiper class="section hero white" indicator-dots="{{true}}">
+  <block wx:for="{{slides}}" wx:key="id">
+    <swiper-item>1</swiper-item>
+  <swiper-item>2</swiper-item>
+  <swiper-item>3</swiper-item>
+  <swiper-item>4</swiper-item>
+  </block>
+  
+  </swiper>
+  <!-- <text class="title">{{title}}</text>  -->
+  <!-- <text class="title3">Discovery</text>
+  <text class="title2">全新一代发现</text>
+  <text class="title3">全尺寸2座跑车，现已接受预定</text> -->
+  <!-- <view class="container1">
+  <button class="bt1">预约试驾</button> 
+  <button class="bt2">了解更多</button> -->
+
+</view>
